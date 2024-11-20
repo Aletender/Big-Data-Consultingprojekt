@@ -6,3 +6,94 @@
 \subsection{Strategische Geschäftsmodellentwicklung}
 
 \subsection{Evaluation einzusetzender Technologien}
+
+\subsubsection{Auswahlprozess Web-Technologien}
+Um geeignete Technologien für die Entwicklung der Applikation zu finden, wird ein Auswahlprozess durchgeführt.
+
+Dieser Prozess folgt dem Konzept der PAPRIKA Methode von Hansen und Ombler.\footcite{Paprika2008}
+Zu Beginn wird eine Liste von Kriterien erstellt, die für die Auswahl der Technologien relevant sind.
+Anschließend wird eine Gewichtung der Kriterien vorgenommen, um die Relevanz der einzelnen Kriterien zu bestimmen.
+Folgende Anforderungen wurden identifiziert:
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{|p{2cm}|c|p{5cm}|p{4cm}|}
+      \hline
+      \textbf{Kriterium} & \textbf{Gewicht} & \textbf{Beschreibung} & \textbf{Skala}\\ \hline
+      {Lernkurve} & 0.4 & Lernaufwand in Relation zum Erfolgsgrad im Hinblick auf umzusetzende Features & flach, moderat, steil\\ \hline
+      {Community} & 0.3 & Größe und Aktivität der Community sowie vorhandenes Lernmaterial & klein, mittel, groß\\ \hline
+      {Bibliotheken} & 0.2 & Verfügbarkeit von Bibliotheken & begrenzt, mittel, umfangreich\\ \hline
+      {Relevanz} & 0.1 & Aktualität und Weiterentwicklung der Technologie & niedrig, mittel, hoch\\ \hline
+  \end{tabular}
+  \caption{Bewertung der Anforderungen an Web-Technologien}\label{tab:table}
+\end{table}
+
+Im nächsten Schritt werden die zu vergleichenden Technologien identifiziert.
+Folgende Komponenten werden für die Entwicklung der Applikation benötigt:
+\begin{itemize}
+  \item Frontend-Framework
+  \item Backend-Framework
+  \item Datenbank
+\end{itemize}
+
+Um den Auswahlprozess zu vereinfachen, wird die Auswahl auf drei Technologien je Kategorie beschränkt.
+Dabei erfolgt die Auswahl anhand von bereits vorhandenem Wissen und Erfahrungswerten.
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{|l|c|c|c|}
+      \hline
+      \textbf{Technologie Kategorie} & \textbf{Top 1} & \textbf{Top 2} & \textbf{Top 3} \\ \hline
+      {Frontend-Framework} & Angular & VueJS & React \\ \hline
+      {Backend-Framework} & Flask & Django & Cherrypy \\ \hline
+      {Datenbank} & PostgreSQL & MySQL & MongoDB \\ \hline
+  \end{tabular}
+  \caption{Technologieauswahl Übersicht}\label{tab:Technologieauswahl Übersicht}
+\end{table}
+
+Zur Bestimmung der einzelnen Werte werden unterschiedliche Datenquellen herangezogen.
+Zur Überprüfung der Relevanz wird die aktuelle Stackoverflow Developer Survey 2024\footcite{StackOverflow2024}, sowie State of JS 2023\footcite{stateofjsStateJavaScript2023} herangezogen.
+
+Zusätzlich werden die Plattformen Github.com und Stackoverflow.com untersucht, inwiefern die Technologien dort vertreten sind.
+Für die Frontend Frameworks im speziellen werden die verfügbaren Libraries im Node Package Manager (NPM) untersucht.
+
+Aus der Analyse lassen sich folgende Daten ableiten:
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|l|p{2cm}|p{3cm}|p{3cm}|p{3cm}|}
+        \hline
+        \rowcolor{lightgray} Name & \textbf{Datum Veröffentlichung} & \textbf{Aktive Fragen auf Stackoverflow} & \textbf{Repositories auf Github mit Tag} & \textbf{Abhängigkeiten NPM} \\ \hline
+        Angular & 2010\footcite{githubAngularReleaseV090} & 306.845 & 57.588 & 14.607 \\ \hline
+        VueJS & 2014\footcite{eggheadEvanYou} & 108.341 & 26.600 & 80.824 \\ \hline
+        React & 2013\footcite{githubReactCHANGELOG} & 481.823 & 173.000 & 240.000 \\ \hline
+        \hline
+        Flask & 2010\footcite{pypiFlask} & 55.856 & 50.985 & - \\ \hline
+        Django & 2005\footcite{pypiDjango} & 313.041 & 67.366 & - \\ \hline
+        Cherrypy & 2004\footcite{pypiCherryPy} & 1.370 & 147 & - \\ \hline
+        \hline
+        PostgreSQL & 1996\footcite{postgresqlHappyBirthday} & 178.607 & 56.562 & - \\ \hline
+        MySQL & 1995\footcite{amazonWhatMySQL} & 661.661 & 75.826 & - \\ \hline
+        Mongodb & 2009\footcite{mongodbMongoDBEvolved} & 176.192 & 111.693 & - \\ \hline
+    \end{tabular}
+    \caption{Bewertung von Technologien}\label{tab:Analyseergebnise Relevanz der Plattformen}
+\end{table}
+
+Auf Basis der gesammelten Daten und geleisteten Recherchen lassen sich die Technologien wie folgt bewerten:
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|l|l|c|c|c|c|}
+        \hline
+        \rowcolor{lightgray} \textbf{Technologie} & \textbf{Kategorie} & \textbf{Community} & \textbf{Lernkurve} & \textbf{Bibliotheken} & \textbf{Relevanz} \\ \hline
+        Angular & Backend Framework & \cellcolor{green!70}3 & \cellcolor{red!70}1 & \cellcolor{green!70}3 & \cellcolor{orange!70}2 \\ \hline
+        VueJS & Backend Framework & \cellcolor{green!70}3 & \cellcolor{green!70}3 & \cellcolor{orange!70}2 & \cellcolor{green!70}3 \\ \hline
+        React & Backend Framework & \cellcolor{green!70}3 & \cellcolor{orange!70}2 & \cellcolor{green!70}3 & \cellcolor{green!70}3 \\ \hline
+        Flask & Frontend Framework & \cellcolor{orange!70}2 & \cellcolor{green!70}3 & \cellcolor{orange!70}2 & \cellcolor{orange!70}2 \\ \hline
+        Django & Frontend Framework & \cellcolor{green!70}3 & \cellcolor{red!70}1 & \cellcolor{green!70}3 & \cellcolor{green!70}3 \\ \hline
+        Cherrypy & Frontend Framework & \cellcolor{red!70}1 & \cellcolor{orange!70}2 & \cellcolor{red!70}1 & \cellcolor{red!70}1 \\ \hline
+        PostgreSQL & Datenbank & \cellcolor{green!70}3 & \cellcolor{orange!70}2 & \cellcolor{green!70}3 & \cellcolor{green!70}3 \\ \hline
+        MySQL & Datenbank & \cellcolor{green!70}3 & \cellcolor{green!70}3 & \cellcolor{orange!70}2 & \cellcolor{orange!70}2 \\ \hline
+        Mongodb & Datenbank & \cellcolor{green!70}3 & \cellcolor{orange!70}2 & \cellcolor{green!70}3 & \cellcolor{green!70}3 \\ \hline
+    \end{tabular}
+    \caption{Bewertung von Technologien}\label{tab:Tabllee Bewertung von Technologien}
+\end{table}
