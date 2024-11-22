@@ -10,10 +10,14 @@
 \subsubsection{Auswahlprozess Web-Technologien}
 Um geeignete Technologien für die Entwicklung der Applikation zu finden, wird ein Auswahlprozess durchgeführt.
 
-Dieser Prozess folgt dem Konzept der PAPRIKA Methode von Hansen und Ombler.\footcite{Paprika2008}
+Dieser Prozess folgt dem Konzept der PAPRIKA Methode von Hansen und Ombler.
 Zu Beginn wird eine Liste von Kriterien erstellt, die für die Auswahl der Technologien relevant sind.
 Anschließend wird eine Gewichtung der Kriterien vorgenommen, um die Relevanz der einzelnen Kriterien zu bestimmen.
-Folgende Anforderungen wurden identifiziert:
+Nachdem die Kriterien festgelegt sind, werden die zu vergleichenden Technologien identifiziert.
+Abschließend erfolgt die Bewertung der Technologien anhand der Kriterien, indem Diese paarweise miteinander verglichen werden.
+Dadurch wird für jede benötigte Komponente die am besten geeignete Technologie identifiziert.\footcite{Paprika2008}
+
+Folgende Anforderungen wurden zur Bewertung der einzelnen Technologien identifiziert:
 
 \begin{table}[htbp]
   \centering
@@ -30,6 +34,7 @@ Folgende Anforderungen wurden identifiziert:
 
 Im nächsten Schritt werden die zu vergleichenden Technologien identifiziert.
 Folgende Komponenten werden für die Entwicklung der Applikation benötigt:
+
 \begin{itemize}
   \item Frontend-Framework
   \item Backend-Framework
@@ -38,6 +43,8 @@ Folgende Komponenten werden für die Entwicklung der Applikation benötigt:
 
 Um den Auswahlprozess zu vereinfachen, wird die Auswahl auf drei Technologien je Kategorie beschränkt.
 Dabei erfolgt die Auswahl anhand von bereits vorhandenem Wissen und Erfahrungswerten.
+Es wurden folgende Technologien für die Auswahl identifiziert:
+
 \begin{table}[htbp]
   \centering
   \begin{tabular}{|l|c|c|c|}
@@ -54,7 +61,7 @@ Zur Bestimmung der einzelnen Werte werden unterschiedliche Datenquellen herangez
 Zur Überprüfung der Relevanz wird die aktuelle Stackoverflow Developer Survey 2024\footcite{StackOverflow2024}, sowie State of JS 2023\footcite{stateofjsStateJavaScript2023} herangezogen.
 
 Zusätzlich werden die Plattformen Github.com und Stackoverflow.com untersucht, inwiefern die Technologien dort vertreten sind.
-Für die Frontend Frameworks im speziellen werden die verfügbaren Libraries im Node Package Manager (NPM) untersucht.
+Für die Frontend Frameworks im Speziellen werden die verfügbaren Libraries im Node Package Manager (NPM) untersucht.
 
 Aus der Analyse lassen sich folgende Daten ableiten:
 
@@ -95,5 +102,59 @@ Auf Basis der gesammelten Daten und geleisteten Recherchen lassen sich die Techn
         MySQL & Datenbank & \cellcolor{green!70}3 & \cellcolor{green!70}3 & \cellcolor{orange!70}2 & \cellcolor{orange!70}2 \\ \hline
         Mongodb & Datenbank & \cellcolor{green!70}3 & \cellcolor{orange!70}2 & \cellcolor{green!70}3 & \cellcolor{green!70}3 \\ \hline
     \end{tabular}
-    \caption{Bewertung von Technologien}\label{tab:Tabllee Bewertung von Technologien}
+    \caption{Bewertung von Technologien}\label{tab:Tabelle Bewertung von Technologien}
 \end{table}
+
+Zuletzt werden die jeweiligen Technologien paarweise miteinander verglichen.
+Dabei wird die Bewertung der einzelnen Kriterien in Relation zueinander gesetzt, um die am besten geeignete Technologie zu identifizieren.
+Neben den erhobenen Daten fließen auch subjektive Einschätzungen in die Bewertung mit ein.
+
+\textbf{Frontend-Framework:}
+
+Angular und VueJS sind beide als Webtechnologie etabliert und weisen eine entsprechende Community auf.
+Ebenso gibt es für beide Tools zahlreiche Communities, wobei sich Angular dort besonders hervortut.
+Für die Relevanz der Technologien erscheint VueJS jedoch vielversprechender.
+Der entscheidende Faktor in diesem Vergleich ist die Lernkurve der Technologien, bei welcher VueJS mit einer flachen Einstiegserfahrung überzeugt.
+Daher fiel die Entscheidung auf VueJS.
+
+Beim Vergleich von Angular und React zeigt sich, dass React ebenfalls äußerst etabliert ist und als eines der beliebtesten Frontend-Frameworks gilt.
+Der Umfang an verfügbaren Bibliotheken ist mit Angular vergleichbar.
+Jedoch ist die Lernkurve von React im Vergleich zu Angular einfacher, was zu einer Entscheidung zugunsten von React führte.
+
+Der Vergleich von VueJS und React zeigt, dass beide Technologien im Hinblick auf die Community gleichauf sind.
+Das Angebot an Bibliotheken ist für React dennoch größer.
+Beide Frameworks gelten als äußerst relevant für moderne Applikationen.
+Entscheidender Faktor im Vergleich ist die Lernkurve, bei welcher VueJS mit einer flachen Einstiegserfahrung überzeugt.
+Aus diesem Grund fiel die Wahl auf VueJS.
+
+In der gesamten Betrachtung der Frontend-Frameworks ist VueJS die Technologie, die am besten zu den Anforderungen passt.
+
+\textbf{Backend-Framework:}
+
+Flask und Django stellen die beiden beliebtesten Python-Frameworks zur Entwicklung von Webapplikationen dar, wobei Django die größere Community aufweist.
+Daraus resultiert ein größeres Angebot an Bibliotheken für Django im Vergleich zu Flask.
+Ebenso die Relevanz der Technologie ist für Django höher einzustufen.
+Über die Lernkurve lässt sich sagen, dass Flask eine flachere Lernkurve aufweist als Django, welches eher als steil zu bewerten ist.
+Im direkten Vergleich ist jedoch der Lernaufwand für Django gerechtfertigt, da die Technologie eine Vielzahl an Features bietet und durch die große Community und dem Angebot an Bibliotheken unterstützt wird.
+Dadurch ist die Entscheidung auf Django gefallen.
+
+Der Vergleich von Flask und Cherrypy zeigt, dass Flask in allen betrachteten Kriterien besser abschneidet.
+Die Community ist größer, das Angebot an Bibliotheken umfangreicher und die Relevanz höher einzustufen.
+Auch die Lernkurve wird flacher gewertet als bei Cherrypy, wodurch die Entscheidung, im direkten Vergleich, auf Flask fällt.
+
+Django ist, ebenso wie Flask, in fast allen Kriterien besser zu bewerten als Cherrypy.
+Einzig die Lernkurve ist bei Cherrypy flacher einzustufen.
+Dennoch überzeugt Django durch die größere Community, das umfangreichere Angebot an Bibliotheken und die höhere Relevanz, weswegen die Entscheidung auf Django fällt.
+
+In der gesamten Betrachtung der Backend-Frameworks ist Django die Technologie, die am besten zu den Anforderungen passt.
+
+\textbf{Datenbanken:}
+
+PostgreSQL und MySQL sind beide als relationale Datenbanken etabliert und weisen eine entsprechende Community auf.
+Dabei gilt MySQL als die einsteigerfreundlichere Datenbank während PostgreSQL eine weitere Verbreitung in der gegenwärtigen Technologielandschaft aufweist.
+Zudem gilt PostGreSQL als die relevantere Technologie.
+Aufgrund der zuvor abgestimmten Gewichtung der Kriterien fällt die Entscheidung auf MySQL.
+
+Der Vergleich von PostgreSQL und MongoDB zeigt, dass die betrachteten Merkmale in etwa gleich zu bewerten sind.
+
+
