@@ -2,6 +2,61 @@
 \section{Beratender Teil} \label{sec:beratender-teil}
 
 \subsection{Entwicklung eines Erstenwurfs für das Applikationsdesign}\label{subsec:entwicklung-eines-erstenwurfs-fuer-das-applikationsdesign}
+In diesem Kapitel wird der Erstentwurf für das Applikationsdesign vorgestellt.
+Der Erstentwurf beschreibt sowohl die Frontend- als auch die Backend-Architektur der Applikation.
+
+\textbf{Frontend}
+Das Frontend stellt den Interaktionsbereich für den Benutzer dar.
+Entsprechend ist es wichtig, dass das Frontend übersichtlich und intuitiv gestaltet ist.
+Dabei ist es entscheidend, die komplexen Zusammenhänge der Applikation und abgebildeten Prozesse so zu visualisieren, dass der Benutzer nicht überfordert wird.
+Die gesamte User-Experience (UX) soll so gestaltet sein, dass der Benutzer durch die Applikation geführt wird und die Akzeptanz der Applikation erhöht wird.
+
+Zusätzlich soll sich die Applikation an die Corporate Identity des Unternehmens anpassen.
+Dies soll durch die Verwendung der Unternehmensfarben in der Applikation und des Logos erreicht werden.
+
+Zur Umsetzung gilt folgendes zu beachten:
+\begin{itemize}
+    \item Das DISH POS typische Orange soll als primäre Farbe verwendet werden.
+    \item Als sekundäre Farben sollen Grau- und Blautöne verwendet werden.
+    \item Die Farben sollen so gewählt werden, dass sie die Aufmerksamkeit des Benutzers auf wichtige Elemente lenken.
+    \item Unternehmens- und Applikationslogos müssen an strategischen Stellen platziert werden.
+\end{itemize}
+
+\textbf{Backend}
+Ziel der Backend-Architektur ist es, die Datenhaltung und -verarbeitung zu gewährleisten und die benötigten Aufrufe zu anderen Komponenten zu ermöglichen.
+Im Rahmen dieses Erstenwurfs wird ein singulärer Server angenommen, der die Datenhaltung und -verarbeitung übernimmt.
+Dieser Server wird über eine REST-API mit dem Frontend kommunizieren und die benötigten Daten bereitstellen.
+Die REST-API setzt sich aus verschiedenen Endpunkten zusammen, welche jeweils die verfügbaren Ressourcen und Aktionen beschreiben.
+Folgende Ressourcen stellt der Service bereit:
+\begin{itemize}
+    \item Endpunkt 1
+    \item Endpunkt 2
+    \item Endpunkt 3
+\end{itemize}
+
+Die Datenhaltung wird über eine Datenbank realisiert, welche innerhalb des Google Cloud Services betrieben wird.
+Folgende Daten werden in der Datenbank gespeichert:
+\begin{itemize}
+    \item Prompts
+    \item Antworten
+    \item User-Feedback
+    \item Generierte Bilder
+    \item Sonstige Metadaten
+\end{itemize}
+
+Zum Speichern der textbasierten Daten kann entschieden werden, ob Cloud Spanner\footcite{google_spanner} als relationale Datenbank oder Data Store\footcite{google_datastore} als NoSQL-Datenbank verwendet wird.
+
+Die Untersuchung von Khan et al. zeigt, dass sich der NoSQL-Ansatz besser dazu eignet, erste Prompts und deren Antworten zu speichern.
+Durch die schemalose Struktur von NoSQL-Datenbanken können neue Prompts und Antworten einfach hinzugefügt werden, ohne dass die Datenbankstruktur angepasst werden muss.
+Darüber hinaus lassen sich diese Technologien gut in die Google Cloud Services integrieren.
+Der Einsatz von einer relationalen Datenbank bietet sich in einem nachgelagerten Schritt an, in welchem die gesammelten Daten analysiert, strukturiert und ausgewertet werden sollen.\footcite{Khan2022SQL}
+
+Entsprechend wird für den produktiven Einsatz des Prototypen Data Store betrachtet.
+Zur lokalen Entwicklung wird entsprechend MongoDB eingesetzt, da dies der NoSQL Favorit aus der vorangegangenen Recherche ist.
+
+Neben den textbasierten Daten müssen auch die generierten Bilder gespeichert werden.
+Dadurch wird eine effiziente Speicherung und Verwaltung der generierten Bilder gewährleistet und ein wiederverwendbarer Zugriff auf die Bilder ermöglicht.
+Zur Speicherung von Bildern wird Google Cloud Storage\footcite{google_storage} verwendet.
 
 \subsection{Umsetzung des Applikationsdesigns in ein Prototypen}\label{subsec:umsetzung-des-applikationsdesigns-in-ein-prototypen}
 
