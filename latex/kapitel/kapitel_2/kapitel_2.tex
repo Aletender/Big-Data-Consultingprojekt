@@ -9,7 +9,7 @@ Der Erstentwurf beschreibt sowohl die Frontend- als auch die Backend-Architektur
 Das Frontend stellt den Interaktionsbereich für den Benutzer dar.
 Entsprechend ist es wichtig, dass das Frontend übersichtlich und intuitiv gestaltet ist.
 Dabei ist es entscheidend, die komplexen Zusammenhänge der Applikation und abgebildeten Prozesse so zu visualisieren, dass der Benutzer nicht überfordert wird.
-Die gesamte User-Experience (UX) soll so gestaltet sein, dass der Benutzer durch die Applikation geführt wird und die Akzeptanz der Applikation erhöht wird.
+Die gesamte User-Experience (UX) soll so gestaltet sein, dass der Benutzer durch die Applikation geführt und dadurch die Akzeptanz der Applikation erhöht wird.
 
 Zusätzlich soll sich die Applikation an die Corporate Identity des Unternehmens anpassen.
 Dies soll durch die Verwendung der Unternehmensfarben in der Applikation und des Logos erreicht werden.
@@ -22,11 +22,39 @@ Zur Umsetzung gilt folgendes zu beachten:
     \item Unternehmens- und Applikationslogos müssen an strategischen Stellen platziert werden.
 \end{itemize}
 
+Aus den genannten Anforderungen wurden folgende Design-Elemente abgeleitet:
+
+Landing Page
+
+Dialog Anzeige
+
+Post Editor
+
+Kalender ansicht
+
+Als technische Basis für das Frontend wird, als Ergebnis der vorangegangenen Recherche, Vue.js verwendet.
+Dieses wird zum Betrieb im Kubernetes Engine Cluster bereitgestellt.
+Für den Betrieb im Kubernetes Cluster muss die Software Architektur Stateless sein, um mit der Skalierung kompatibel zu sein.
+Eine Stateless-Architektur bedeutet, dass die Applikation keine Zustände speichert.
+Würde die Applikation Zustände speichern, müssten diese bei einer Skalierung auf mehrere Instanzen synchronisiert werden, was zu einem erhöhten Aufwand führen würde.
+
+Um die Applikation im Kubernetes Cluster hosten zu können, erfolgt das Verpacken der Vue.js Applikation in ein Docker-Image über den Google Cloud Build Service.\footcite{google_cloud_build}
+
+Das daraus erzeugte Docker-Image wird in den Google Kubernetes Engine Cluster genutzt und entsprechend gestartet.
+Dabei wird eine Deployment-Struktur, bestehend aus einem Load Balancer Service, sowie mindestens zwei Pods erstellt.
+Der Load Balancer wird für externe Zugriffe konfiguriert und leitet die Anfragen an die Pods weiter.
+Der Betrieb, mit mindestens zwei Pods, gewährleistet eine hohe Verfügbarkeit der Applikation und ermöglicht eine einfache Skalierung.
+In der Entwicklungsphase ermöglicht der Multi-Pod-Betrieb ein frühes Testen von Load-Balancing und Skalierung, sowie die Überprüfung der Stateless-Architektur.
+
+Zusätzlich enthält das Deployment sowohl Konfigurations- als auch Secrets-Dateien, um die Applikation zu konfigurieren und sensible Daten zu schützen.
+
 \textbf{Backend}
 Ziel der Backend-Architektur ist es, die Datenhaltung und -verarbeitung zu gewährleisten und die benötigten Aufrufe zu anderen Komponenten zu ermöglichen.
-Im Rahmen dieses Erstenwurfs wird ein singulärer Server angenommen, der die Datenhaltung und -verarbeitung übernimmt.
-Dieser Server wird über eine REST-API mit dem Frontend kommunizieren und die benötigten Daten bereitstellen.
+Im Rahmen dieses Erstenwurfs wird zunächst ein einzelner Service konzipiert, der die Datenhaltung und -verarbeitung übernimmt, genannt Social Media Campaign Service (SCM Service)
+
+Der SCM Service stellt eine REST-API bereit, welche die Kommunikation mit dem Frontend ermöglicht.
 Die REST-API setzt sich aus verschiedenen Endpunkten zusammen, welche jeweils die verfügbaren Ressourcen und Aktionen beschreiben.
+
 Folgende Ressourcen stellt der Service bereit:
 \begin{itemize}
     \item Endpunkt 1
@@ -44,6 +72,12 @@ Folgende Daten werden in der Datenbank gespeichert:
     \item Sonstige Metadaten
 \end{itemize}
 
+Das Hosting des SCM Service erfolgt ebenfalls über den Google Kubernetes Engine Cluster.
+Dabei ist das Kubernetes Deployment gleich aufgebaut wie das Frontend-Deployment.
+Bei Bedarf können die Deployments unabhängig voneinander skaliert bzw. konfiguriert werden.
+
+\textbf{Strategie zur Datenhaltung}
+
 Zum Speichern der textbasierten Daten kann entschieden werden, ob Cloud Spanner\footcite{google_spanner} als relationale Datenbank oder Data Store\footcite{google_datastore} als NoSQL-Datenbank verwendet wird.
 
 Die Untersuchung von Khan et al. zeigt, dass sich der NoSQL-Ansatz besser dazu eignet, erste Prompts und deren Antworten zu speichern.
@@ -54,9 +88,37 @@ Der Einsatz von einer relationalen Datenbank bietet sich in einem nachgelagerten
 Entsprechend wird für den produktiven Einsatz des Prototypen Data Store betrachtet.
 Zur lokalen Entwicklung wird entsprechend MongoDB eingesetzt, da dies der NoSQL Favorit aus der vorangegangenen Recherche ist.
 
+\textbf{Speicherung von Bildern}
+
 Neben den textbasierten Daten müssen auch die generierten Bilder gespeichert werden.
 Dadurch wird eine effiziente Speicherung und Verwaltung der generierten Bilder gewährleistet und ein wiederverwendbarer Zugriff auf die Bilder ermöglicht.
 Zur Speicherung von Bildern wird Google Cloud Storage\footcite{google_storage} verwendet.
+Google Cloud Storage ist ein skalierbarer und kostengünstiger Speicher, der eine einfache Verwaltung von Bildern ermöglicht.
+In diesem Service wird ein Bucket erstellt, in dem die Bilder gespeichert werden.
+
+Die Erzeugung der Bilder wird über den Social Media Campaign Service gestartet, indem das Text-to-Image-Modell aufgerufen wird.
+Das Modell generiert das Bild und schickt es an den SCM Service zurück.
+Dieser speichert das Bild im Google Cloud Storage und persistiert den Pfad im Data Store.
+Bei Abfragen des Bildes wird der Pfad aus dem Data Store gelesen und über die REST-API an das Frontend zurückgegeben.
+
+Für den Prototypen wird ein einfacher Mechanismus implementiert, der die Bilder direkt im Google Cloud Storage speichert und den Pfad im Data Store persistiert.
+Dabei ist zu beachten, dass die Bilder in einem öffentlichen Bucket gespeichert werden, um den Zugriff für das Frontend zu ermöglichen.
+Zusätzlich ist die Auslastung des Services im produktiven Einsatz zu beachten, da die Speicherung von Bildern einen hohen Speicherbedarf verursachen kann.
+
+Als Lösung kann die Speicherung der Bilder durch eine Sidecar-Architektur ausgelagert werden, um die Last auf den SCM Service zu reduzieren.
+Dabei wird ein weiterer Service implementiert, der die Bilder entgegennimmt und im Google Cloud Storage speichert.
+Dieser Service wird innerhalb des SCM Deployments gestartet und übernimmt die Speicherung der Bilder.\footcite{microsoft_sidecar_pattern}
+
+Dadurch entsteht der Vorteil, dass eine unabhängige Auswahl der Speicherungstechnologie für die Bilder getroffen werden kann, wodurch die Performance verbessert werden kann.
+Darüber hinaus teilen sich alle Pods des Deployments den gleichen Lebenszyklus, was die Wartung und Skalierung vereinfacht.\footcite{kubernetes_sidecar_containers}
+
+Um die Bilder über einen Pfad für das Frontend verfügbar zu machen, wird ein weiterer Service, das Google Cloud Delivery Network (CDN)\footcite{google_cloud_cdn_overview}, verwendet.
+Das CDN fungiert als Zwischenspeicher für statische Inhalte und stellt einen, gesondert skalierbaren, Zugriffspunkt für diese Daten bereit.
+Dadurch wird sowohl die benötigte Bandbreite bei der Kommunikation mit den Applikationsservices reduziert, als auch die Ladezeiten für den Benutzer verkürzt.
+Zudem reduzieren sich dadurch die Entwicklungs- und Wartungskosten, da besondere Encoding- und Skalierungsschritte entfallen.
+
+Das CDN wird so konfiguriert, dass es auf den angelegten Bucket im Google Cloud Storage zugreift und die Bilder an den Benutzer ausliefert.
+Dabei werden Synergieeffekte genutzt, da das CDN bereits in der Google Cloud integriert ist und somit eine einfache Konfiguration ermöglicht.
 
 \subsection{Umsetzung des Applikationsdesigns in ein Prototypen}\label{subsec:umsetzung-des-applikationsdesigns-in-ein-prototypen}
 
