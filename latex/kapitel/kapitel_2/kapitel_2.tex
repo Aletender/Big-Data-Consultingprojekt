@@ -165,6 +165,209 @@ Dabei werden Synergieeffekte genutzt, da das CDN bereits in der Google Cloud int
 
 \subsection{Umsetzung des Applikationsdesigns in ein Prototypen}\label{subsec:umsetzung-des-applikationsdesigns-in-ein-prototypen}
 
+\subsection{Antizipation der Kosten und des Nutzens}
+
+Zur Berechnung der variablen Kosten im prodoktiven Betrieb der Plattform sind folgende Facetten zu betrachten.
+
+\begin{itemize}
+    \item Kosten für Generierung und Speicherung von Bildern
+    \item Kosten für Generierung und Speicherung von Texten
+    \item Kosten für die Speicherung von Metadaten
+    \item Kosten für die Bereitstellung der REST-API
+    \item Kosten für die Bereitstellung des Frontends
+    \item Kosten für die Bereitstellung des Backends
+    \item Kosten für die Bereitstellung des CDN
+    \item Kosten für die Bereitstellung des Data Store
+    \item Kosten für die Bereitstellung des Google Cloud Storage
+    \item Kosten für die Bereitstellung des Kubernetes Clusters
+\end{itemize}
+
+Zusätzlich sind folgende Szenarien anzunehmen, um die Kostenstruktur zu analysieren:
+Best Case Szenario: 5000 User
+Worst Case Szenario: 50 User
+Realistisches Szenario: 500 User
+
+\textbf{Generierung und Speicherung von Bildern}
+Zum Generieren der Bilder wird das Text-to-Image-Modell Flux 1 schnell verwendet, welches auf der Google Cloud Plattform als Endpunkt bereitgestellt wird.
+Dabei wird als Maschine ein in Belgien gehostetes n1-standard-4 gewählt, welches 4 vCPUs und 15 GB RAM besitzt.
+Dies ist die kleinstmögliche Konfiguration für das Modell und verursacht Kosten von 0,24 USD pro aufgewendete Maschinenstunde.\footcite{GoogleVertexAI2025}
+
+Im Testbetrieb des Prototypen lag die Inferenzzeit pro Anfrage bei ca. 500 ms.
+Basierend auf den festgelegten Szenarien ergibt sich folgende Kostenstruktur, bei der Annahme, dass jeder User 10 Anfragen pro Monat stellt:
+
+\begin{itemize}
+    \item Best Case: 5000 User * 10 Anfragen * 0,5 s * 0,24 USD = 600 USD
+    \item Worst Case: 50 User * 10 Anfragen * 0,5 s * 0,24 USD = 6 USD
+    \item Realistisch: 500 User * 10 Anfragen * 0,5 s * 0,24 USD = 60 USD
+\end{itemize}
+
+Die generierten Bilder werden im Google Cloud Storage gespeichert.
+Dieser wird in der Region Belgien gehostet und wird mit 0,02 USD pro GB und Monat berechnet.\footcite{GoogleCloudStorage2025}
+
+Die im Testbetrieb erzeugten Bilder hatten eine Größe von ca. 128 KB.
+Basierend auf den festgelegten Szenarien ergibt sich folgende Kostenstruktur:
+\begin{itemize}
+    \item Best Case: 5000 User * 10 Anfragen * 128 KB * 0,02 USD = 12,8 USD
+    \item Worst Case: 50 User * 10 Anfragen * 128 KB * 0,02 USD = 0,128 USD
+    \item Realistisch: 500 User * 10 Anfragen * 128 KB * 0,02 USD = 1,28 USD
+\end{itemize}
+
+Der Speicherbedarf für generierte Bilder steigt neben dem eintretendem Szenario ebenso mit der Zeit an.
+Dabei ist zu beachten, dass die Kosten für den Speicherplatz im Google Cloud Storage mit der Zeit steigen.
+
+Auf die ersten drei Jahre sind dabei folgende Kosten zu erwarten:
+\includegraphics{abbildungen/KostenSpeicher}
+
+\textbf{Generierung und Speicherung von Texten}
+Die Textgenerierung wird mit dem Text-to-Text-Modell Mistral 7B durchgeführt, welches ebenfalls auf der Google Cloud Plattform als Endpunkt bereitgestellt wird.
+Dabei wird die gleiche Konfiguration wie beim Bildmodell verwendet, entsprechend Region Belgien und n1-standard-4 als Maschine.
+Die anfallenden Maschinenstunden werden jedoch geringer angenommen, da die Inferenzzeit pro Anfrage im Testbetrieb bei ca. 100 ms lag.
+
+Daraus ergeben sich folgende Kostenstrukturen:
+\begin{itemize}
+    \item Best Case: 5000 User * 10 Anfragen * 0,1 s * 0,24 USD = 120 USD
+    \item Worst Case: 50 User * 10 Anfragen * 0,1 s * 0,24 USD = 1,2 USD
+    \item Realistisch: 500 User * 10 Anfragen * 0,1 s * 0,24 USD = 12 USD
+\end{itemize}
+
+Zum Speichern der generierten Texte wird der Data Store verwendet.
+Dieser wird in der Region Belgien gehostet und wird nach Lese- und Schreibvorgängen, sowie den gespeicherten Daten berechnet.
+\includegraphics{abbildungen/kostendatastore}
+\footcite{GoogleDatastorePricing2025}
+
+Dabei wird nur die Nutzung abgerechnet, welche die Freikontingente überschreitet.
+Dies wird einzig im Best Case Szenario eintreten, da die Freikontingente für die anderen Szenarien ausreichen.
+Selbst im Best Case Szenario ist anzunehmen, dass einzig das Freikontingent für Schreibvorgänge minimal überschritten wird.
+Dieses wird pro 100.000 Schreibvorgängen mit 0,099 USD berechnet, weshalb diese Kosten vernachlässigbar sind.
+
+Für den Speicherbedarf ist zu beachten, dass der Text bei einem Social Media Post bei durchschnittlich 200 Zeichen liegen kann.
+
+\begin{itemize}
+    \item \textbf{Best Case}
+    \begin{itemize}
+        \item \textbf{2025:} \(5000 \, \text{User} \times 24 \, \text{kB} = 117,19 \, \text{MB}\)
+        \item \textbf{2026:} \(117,19 \, \text{MB} + (6000 \, \text{User} \times 24 \, \text{kB}) = 263,06 \, \text{MB}\)
+        \item \textbf{2027:} \(263,06 \, \text{MB} + (7200 \, \text{User} \times 24 \, \text{kB}) = 440,25 \, \text{MB}\)
+    \end{itemize}
+
+    \item \textbf{Realistic Case}
+    \begin{itemize}
+        \item \textbf{2025:} \(500 \, \text{User} \times 24 \, \text{kB} = 11,72 \, \text{MB}\)
+        \item \textbf{2026:} \(11,72 \, \text{MB} + (600 \, \text{User} \times 24 \, \text{kB}) = 26,31 \, \text{MB}\)
+        \item \textbf{2027:} \(26,31 \, \text{MB} + (720 \, \text{User} \times 24 \, \text{kB}) = 44,03 \, \text{MB}\)
+    \end{itemize}
+
+    \item \textbf{Worst Case}
+    \begin{itemize}
+        \item \textbf{2025:} \(50 \, \text{User} \times 24 \, \text{kB} = 1,17 \, \text{MB}\)
+        \item \textbf{2026:} \(1,17 \, \text{MB} + (60 \, \text{User} \times 24 \, \text{kB}) = 2,63 \, \text{MB}\)
+        \item \textbf{2027:} \(2,63 \, \text{MB} + (72 \, \text{User} \times 24 \, \text{kB}) = 4,40 \, \text{MB}\)
+    \end{itemize}
+\end{itemize}
+
+Daraus ergeben sich folgende Kosten in den kommenden drei Jahren:
+\includegraphics{abbildungen/Kosten_Speicher_Text}
+
+Dabei ist über die Jahre bereits ein realisiertes Wachstum betrachtet, welches sich in den Kosten widerspiegelt.
+Dennoch sind selbst im Best Case Szenario die Kosten für den Speicherplatz im Data Store vernachlässigbar.
+
+\textbf{Plattform}
+Die Plattform setzt sich aus folgenden Komponenten zusammen:
+\begin{itemize}
+    \item Google Kubernetes Engine Cluster
+    \item Google Cloud CDN
+    \item Enabler Services (Monitoring, Logging, IAM, Secret Manager)
+\end{itemize}
+
+In der Ramp-Up-Phase wird die Plattform mit einer minimalen Konfiguration betrieben.
+Die Funktion der Enterprise-Version sind für die ersten drei Jahre nicht notwendig und werden daher nicht betrachtet.
+Dementsprechend wird die Standardversion von der Google Kubernetes Engine verwendet, welche 0,10 USD pro Stunde kostet.\footcite{GoogleKubernetesEnginePricing2025}
+Bei einem Betrieb von 24 Stunden am Tag ergeben sich folgende Kosten für die drei Jahre:
+
+0,10 USD * 24 h * 365 Tage * 3 Jahre = 2628 USD
+
+Zusätzlich sind die Kosten für die Enabler Services zu betrachten.
+
+Für das Monitoring werden Kosten erhoben, basierend auf dem benötigen Speicher, sowie dem Aufrufen der erhobenen Daten.
+
+\begin{itemize}
+    \item 0,2580 USD/MiB: erste 150–100.000 USD/MiB
+    \item 0,1510 USD/MiB: nächste 100.000–250.000 USD/MiB
+    \item 0,0610 USD/MiB: >250.000 USD/MiB
+\end{itemize}
+
+Die Aufrufe werden mit 0,01 USD/1.000API-Leseaufruf abgerechnet, wobei API-Schreibaufrufe kostenlos sind.
+
+Die Plattform setzt sich aus drei Kubernetes Deployments zusammen.
+Diese werden mit jeweils 2 Pods betrieben, um eine hohe Verfügbarkeit zu gewährleisten.
+Daraus lässt sich ein grober Bedarf an Speicher von 1 GB ableiten, welcher für die ersten drei Jahre ausreicht.
+Dieser lässt sich mit unterschiedlichen Speicherzeitrahmen reduzieren.
+Wenn die Monitoring-Daten für 30 Tage gespeichert werden, ergibt sich ein Speicherbedarf von ca. 84,11 MiB.
+Wird dieser auf die Kostenstruktur angewendet, ergeben sich näherungsweise folgende Kosten für die drei Jahre:
+
+0,2580 USD/MiB * 84,11 MiB * 365 Tage * 3 Jahre = 7,5 USD
+
+Zur Vereinfachung der Berechnung werden ähnliche Kosten für das Logging angenommen.
+
+Für die Nutzung des IAM Services fallen keine Kosten an.\footcite{GoogleIAMPricing2025}
+Für den Secret Manager ist in der Standardversion eine Nutzung von 100 Secrets kostenlos, weshalb auch hier keine Kosten anfallen.\footcite{GoogleSecretManagerPricing2025}
+
+% TODO: Betriebskosten zusammenfassen
+
+
+\textbf{Entwicklungskosten}
+Zur Entwicklung der Plattform sind nach Abschluss dieser Arbeit noch folgende Arbeiten notwendig, um ein produktiven Betrieb zu gewährleisten:
+\begin{itemize}
+    \item Entwicklung und Anpassung der Frontend-Applikation
+    \item Anpassen der Kubernetes Deployments
+    \item Einrichten der Enabler Services
+    \item Einrichten des Data Store + Google Cloud Storage
+    \item Einrichten des CDN
+    \item Ende-zu-Ende-Tests
+    \item Aufbau Support- und Wartungsstruktur
+\end{itemize}
+
+Zur Berechnung der Entwicklungskosten sind folgende Annahmen zu treffen:
+\begin{itemize}
+    \item Stundensatz Entwickler: 100 Euro
+    \item Entwicklungsteam: 5 Entwickler
+\end{itemize}
+
+Zur Erfassung der Aufwände werden grobe Full Time Equivalents (FTE) angenommen, welche die Entwicklungskosten für die ersten drei Jahre darstellen.
+Damit ergeben sich folgende Kosten:
+\begin{itemize}
+    \item Entwicklung und Anpassung der Frontend-Applikation - 5 FTE
+    \item Anpassen der Kubernetes Deployments - 2 FTE
+    \item Einrichten der Enabler Services - 2 FTE
+    \item Einrichten des Data Store + Google Cloud Storage - 1 FTE
+    \item Einrichten des CDN - 1 FTE
+    \item Ende-zu-Ende-Tests - 5 FTE
+    \item Aufbau Support- und Wartungsstruktur 3 FTE
+\end{itemize}
+
+Daraus ergeben sich grob folgende Personalkosten:
+19 FTE * 8 Stunden * 100 Euro = 15.200 Euro
+
+Zusätzlich sind die Kosten für die Entwicklungsumgebung zu betrachten.
+Diese teilt sich in das Bereitstellen des notwendigen Toolings, sowie einer Testumgebung auf.
+Da die restaufwände lediglich ein kleines Team benötigen von 5 Entwicklern, fallen keine nennenswerten Kosten für die Entwicklungsumgebung an.
+Einzig relevant sind die Lizenzkosten für die benötigten IDEs, welche mit 100 Euro pro Entwickler pro Monat angenommen werden.
+
+Um die finalen Aufwände leisten zu können wird ein Zeitraum von 2 Monaten angenommen, in welchem die Entwicklung abgeschlossen wird.
+Daraus ergeben sich folgende Kosten:
+5 Entwickler * 100 Euro * 2 Monate = 1000 Euro
+
+Zusammenfassend ergeben sich folgende Entwicklungskosten:
+15.200 Euro + 1000 Euro = 16.200 Euro
+
+%(Pricing Modell Auswahl)
+
+%(Sonstige Einnahmen)
+
+%(Break Even Analyse)
+
+
+
 
 
 
