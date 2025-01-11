@@ -109,38 +109,139 @@ Genauso ist die Erhebung der Prompts ein wichtiger Datenerhebungsaspekt zur Mone
 Die in Kapitel XYZ genannten Eigenschaften beschreiben die wichtigsten Charakteristiken von Social Media Content, um die Aufmerksamkeit und Interaktionsrate von Social Media Nutzern zu maximieren und somit potenzielle Leads zu generieren und zu einer Kaufentscheidung für ein beworbenes Produkt zu bringen.
 Hierbei ist zu beachten, dass der Content ideal auf die jeweilige Social Media Plattform abgestimmt ist und die Zielgruppe emotional anspricht, damit sich dieser besser in Erinnerung bleibnt.
 Zudem sollte der Content eine klare und konsistente Botschaft transportieren.
+
 Zudem sollten veröffentliche Inhalte einen Hochwertigen Eindruck vermitteln und sowohl farblich als auch typografisch mit der Markenidentität übereinstimmen.
-Eine zentrale  Aufgabe im Bereich des Social Media Marketings ist somit die Erstellung und veröffentlichung von hochwertigem, zielgruppen gerichteten und aussagekräftigen Content, der Zielgruppen zu einer Kaufentscheidung bringt, oder im allgemeinen den Wiedererkennungswert eines bestimmten Produktes oder einer gesamten Marke  steigert.
+Eine zentrale Aufgabe im Bereich des Social Media Marketings ist somit die Erstellung und veröffentlichung von hochwertigem, zielgruppen gerichteten und aussagekräftigen Content, der Zielgruppen zu einer Kaufentscheidung bringt, oder im allgemeinen den Wiedererkennungswert eines bestimmten Produktes oder einer gesamten Marke  steigert.
+
 Die generierung von Social Media Content ohne den Einsatz von generativen Machine Learning Modellen erfordert umfangreiche Ressourcen, um ein qualitativ hochwertiges Ergebnis zu erzielen.
-Es werden viele verschiedene Fähigkeiten in den Bereichen, Kreativität, Marketing, Design, Fotografie und Ton benötigt, um hochwertige Social Media Werbeinhalte zu erzeugen.
+Um hochwertige Social Media Werbeinhalte zu erzeugen werden diverse Kompetenzen in den Bereichen, Kreativität, Marketing, Design, Fotografie und Ton benötigt.
 Aus den daraus resultierenden Kosten zeichnet sich ein Trend im Einsatz von generativen Machine Learning Modellen ab. (Hier paar Facts).
+
 Diese Entwicklung hat dazu geführt, dass heutige state-of-the-art KI Modelle dazu Fähig sind, Social Media Content jeglicher Art, egal ob in Bild-, Text-, oder Videoform zu erzeugen, welcher sich ohne Weiteres nicht von menschlich generierten Content unterscheiden lässt und den Eindruck von hochwertig generierten Werbeinhalten vermittelt.
 Auf eine Vielzahl dieser äußerst leistungsfähigen Modelle kann über das Internet kostenlos zugegriffen werden.
 Machine Learning Plattformen wie Hugging Face bieten die möglichkeit, vortrainierte Machine Learning Modelle aus verschiedensten Kategorie, wie beispielsweise text-to-image, text-to-text, text-to-voice und viele Weitere, kostenlos herunterzuladen und auf eigenen Hardware Ressourcen zu betreiben und zu verwenden.
 Die Auswahl des zu verwendenden Machine Learning Models ist neben der Erschaffung eines optimalen prompts zur Nutzung des Modells von zentraler Bedeutung für die Qualität des Ergebnisses, da sich die generativen Modelle in ihren Hyperparametern und den angewandten trainingsprozessen voneinander unterscheiden.
+
 Die Auswahl der im Rahmen dieser Projektarbeit eingesetzten generativen Machine Learning Modelle zur Generierung von Social Media Content basiert auf den folgenden Faktoren:
-Modellziel: Die Art der Aufgabe, die durch das Machine Learning Modell bearbeitet werden kann wie z.b. Übersetzungen, Texterzeugung, Bilderzeugung, Bildbeschreibung, Objekterkennung.
+
+Modellziel: Die Art der Aufgabe, die durch das Machine Learning Modell bearbeitet werden kann wie z.B. Übersetzungen, Texterzeugung, Bilderzeugung, Bildbeschreibung, Objekterkennung.
+
 Qualität: Die Qualität der generierten Inhalte in Hinblick auf Kreativität, Erscheinungsbild, Kohärenz und Nutzbarkeit.
+
 Leistung: Dauer für die Generierung von Inhalten sowie Konsistenz in den Ergebnissen.
+
 Integration: Integrationsmöglichkeiten des Modells mit weiteren Systemen.
+
 Größe: Umfang des Modells, sowie der benötigten Rechenanforderungen zur Verwendung des Modells.
 
-Unter der Annahme, dass wie in Kapitel XYZ beschrieben, ein Engagement fördernder social media Post aus einer grafischen Komponente besteht, welche die Aufmerksamkeit des Nutzers erregt und einer beschreibenden Text Komponente in Form von Beschreibungen, um den Nutzer mit zusätzlichen Informationen über die präsentierten Inhalte zu versorgen, lässt sich die folgende Modellziel Pipeline daraus ableiten.
+Unter der Annahme, dass wie in Kapitel XYZ beschrieben, ein Engagement fördernder social media Post aus einer grafischen Komponente besteht, welche die Aufmerksamkeit des Nutzers erregt und einer beschreibenden Text Komponente in Form von Beschreibungen, um den Nutzer mit zusätzlichen Informationen über die präsentierten Inhalte zu versorgen, lässt sich folgende Modellziel Pipeline ableiten, die den Prozess der KI basierten Social Media Content generierung abstrakt zusammenfasst.
 
-<<Grafik>>
+\clearpage
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{abbildungen/Process_image_generation}
+    \caption{Prozess zur KI gestützten Social Media Content Generierung}
+    \label{fig:process_content_generation}
+\end{figure}
+
 
 Der Anwender startet den Prozess mit der Angabe von Informationen über das gewünschte Produkt, für welches der Social Media Content generiert werden soll.
-Im ersten Verarbeitungsschritt wird diese Informationen von einem text-to-text Machine Learning Modell verarbeitet, um daraus einen prompt zu generieren, welcher als Basis dient, um die finalen Social Media Inhalte zu generieren. Entscheidend ist hierbei die Erweiterung der Produktangaben um stilistische Anweisungen und werbespezifischen Details, um ein möglichst engagement förderndes Ergebnis zu erzielen. Der finalisierte Prompt, welcher als Basis für die Generierung von Bild und Text dient, wird anschließend einerseits ein weiteres Mal in ein text-to-text Machine Learning Modell übergeben, um daraus eine aussagekräftige Social Media Beschreibung in Textform zu generieren und andererseits in ein text-to-image Modell, um ein ansprechendes Bild zu generieren, welches für die Bewerbung des gewünschten Produktes geeignet ist.
+Im ersten Verarbeitungsschritt wird diese Informationen von einem Text-to-Text Machine Learning Modell verarbeitet, um daraus einen prompt zu generieren, welcher als Basis dient, um die finalen Social Media Inhalte zu generieren.
+Entscheidend ist hierbei die Erweiterung der Produktangaben um stilistische Anweisungen und werbespezifischen Details, um ein möglichst engagement förderndes Ergebnis zu erzielen.
+Der finalisierte Prompt, welcher als Basis für die Generierung von Bild und Text dient, wird anschließend einerseits ein weiteres Mal in ein Text-to-Text Machine Learning Modell übergeben, um daraus eine aussagekräftige Social Media Beschreibung in Textform zu generieren und andererseits in ein Text-to-Image Modell, um ein ansprechendes Bild zu generieren, welches für die Bewerbung des gewünschten Produktes geeignet ist.
 Zur Auswahl eines geeigneten Text-to-Image Modelles wurden die beschriebenen Bewertungskriterien herangezogen um eine einheitliche Vergleichsbasis zu schaffen.
 Die bewerteten Modelle basieren hierbei auf den populärsten Modellen der Machine Learning Plattform Hugging Faces.
+
 Verglichen wurden unter anderem bekannte Modelle von etablierten Unternehmen wie die stable-diffusion modelle der Firma stability AI oder FLUX Modelle der firma black forest labs.
-Um die leistungsfähigkeit der Modelle zu vergleichen und anschließend eine finale Auswahl je Modellziel treffen zu können, wurde ein prompt mit der Anweisung zur Generierung eines Döner Kebabs den verschiedenen Modelle als input übergeben. Anschließend wurde die benötigte Zeit zur Generierung des outputs, sowie der output selbst miteinander verglichen. Abbildung X zeigt eine Zusammenfassung der ouputs zum Modellziel Text-To-Image. Dementsprechend zeigt Abbildung X eine Zusammenfassung der ouputs zum Modellziel Text-To-Text mit den entsprechenden Werbetexten. Tabelle X zeigt eine Zusammenfassung der erfassten Kennzahlen über alle untersuchten Modelle.
+Um die leistungsfähigkeit der Modelle zu vergleichen und anschließend eine finale Auswahl je Modellziel treffen zu können, wurde ein prompt mit der Anweisung zur Generierung eines Döner Kebabs den verschiedenen Modelle als input übergeben.
+Anschließend wurde die benötigte Zeit zur Generierung des outputs, sowie der output selbst miteinander verglichen.
 
-<<Grafik>>
+Abbildung \ref{fig:results_image_generation} zeigt eine Zusammenfassung der generierten Inhalte in der Kategorie Text-to-Image.
+Positiv zu bewerten ist, dass alle der getesteten Modelle den Auftrag korrekt interpretiert haben und eine Detailaufnahme des geforderten Produktes erzeugt haben.
+Unterschiede gibt es jedoch im erreichten Realismus der Produktbilder.
+Die FLUX modelle erzeugten hierbei die qualitativ hochwertigsten und realistischsten Bilder, die kaum von realen Produktbildern zu unterscheiden sind.
+Die Stable Diffusion Modelle waren ebenfalls dazu fähig, inhaltlich korrekte aber dennoch minderwertige Produktbilder zu generieren.
+Bei näherer Betrachtung der abgebildeten Zutaten eine gewisse Künstlichkeit auf, die Rückschlüsse auf KI generierte Inhalte schließen lässt.
+Zudem erzeugen die Produktbilder nur mäßiges Interesse am Produkt, aufgrund der vergleichsweisen schlechten Komposition und stilistischen Umsetzung des Bildes.
+Das Sana-\_1600M\_1024px Modell erzeugte ein ähnlich gelungenes, visuell ansprechendes Produktbild, wie die Modelle FLUX.1-dev und FLUX.1-schnell, dennoch ist der Realismusgrad deutlich schlechter, da sich die Strukturen der abgebildeten Zutaten leicht von den Originalen unterscheiden.
 
-<<Grafik>>
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{abbildungen/Results_image_generation}
+    \caption{Vergleich der generierten Bilddateien durch die Text-to-Image Modelle}
+    \label{fig:results_image_generation}
+\end{figure}
 
-<<Tabelle>>
+Die Abbildungen \ref{fig:textresult_gemini} bis \ref{fig:textresult_nvdia_nemotron} bieten eine Zusammenfassung der generierten Inhalte zum Modellziel Text-to-Text mit den für Werbezwecken einsetzbaren Bildbeschreibungen.
+Positiv zu bewerten ist der über alle Modelle hinweg erreichte Realismusgrad.
+Jedes der getesteten Modelle erzeugte kurze, aussagekräftige, bildhafte und mit Schlagwörtern gefüllte Texte und baute zudem themenspezifische Hashtags ein.
+Keine der generierten Bildbeschreibungen unterscheidet sich stark in Form und Inhalt von heutzutage gängigen Werbebeiträgen in sozialen Medien.
+Hierbei auffällig ist, dass sowohl das QwQ-32B-Preview Modell, als auch das Llama-3.1-Nemotron-70B-Instruct-HF standardmäßig keine Emojis als stilistisches Mittel in den generierten Texten verwenden.
+Darüber hinaus ist zu beobachten, dass das Llama-3.1-Nemotron-70B-Instruct-HF fiktive Rabattaktionen bewirbt, die nicht im Eingabeprompt gefordert waren.
+Alle der untersuchten Text-to-Text Modelle, ausgenommen dem Mistral-7B-Instruct-v0.3 Modell, generierten zudem mehr als eine Bildbeschreibung, obwohl dies nicht im Eingabeprompt verlangt wurde.
+
+\clearpage
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{abbildungen/textresult_gemini}
+    \caption{generierter Text durch das Text-to-Text Modell gemini-1.5-pro}
+    \label{fig:textresult_gemini}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{abbildungen/textresult_mistral}
+    \caption{generierter Text durch das Text-to-Text Modell mistralai/Mistral-7B-Instruct-v0.3}
+    \label{fig:textresult_mistral}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{abbildungen/textresult_Qwen}
+    \caption{generierter Text durch das Text-to-Text Modell Qwen/QwQ-32B-Preview}
+    \label{fig:textresult_Qwen}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{abbildungen/textresult_nvdia_nemotron}
+    \caption{generierter Text durch das Text-to-Text Modell nvidia/Llama-3.1-Nemotron-70B-Instruct-HF}
+    \label{fig:textresult_nvdia_nemotron}
+\end{figure}
+
+Tabelle \ref{tab:table_modellvergleich} zeigt eine Zusammenfassung der erfassten Kennzahlen über alle untersuchten Modelle.
+Auffällig ist jedoch, dass die untersuchten Machine Learning Modelle mit dem Modellziel Text-to-Text, trotz ihrer unterschiedlichen Größe und Trainingsdaten, in der Generierungsdauer und Qualität der Ergebnisse kaum voneinander abweichen.
+Die Modellgröße unterscheidet sich jedoch erheblich, wobei das gemini-1.5-pro Modell mit über 100GB das größte Modell, und das Mistral-7B-Instruct-v0.3 mit 15.5GB das kleinste Modell darstellt.
+Aus Effizienzgründen ist das Mistral-7B-Instruct-v0.3 Modell für die Kategorie Text-to-Text, welches die qualitativ hochwertigsten Ergebnisse in kürzester Zeit generierte, zu bevorzugen.
+
+Die untersuchten Modelle in der Kategorie Text-to-Image hingegen, zeigen deutliche Unterschiede in der Qualität der generierten Inhalte, wobei die FLUX Modelle die qualitativ hochwertigsten Ergebnisse erzielen.
+Im direkten Vergleich erzielte hierbei das FLUX.1-schnell Modell die besten Ergebnisse, da es die qualitativ hochwertigsten Bilder in kürzester Zeit generierte und somit zu bevorzugen ist.
+
+\begin{table}[t]
+  \centering
+  \begin{tabular}{|p{3cm}|p{3cm}|p{2cm}|p{2cm}|p{3cm}|}
+      \hline
+      \textbf{Modellname} & \textbf{Modellziel} & \textbf{Modellgröße} & \textbf{Generierungsdauer} & \textbf{Qualität}\\ \hline
+      {Black-forest-labs/FLUX.1-dev} & Text-to-Image & 23.8 GB & 18.8s & sehr gut\\ \hline
+      {Black-forest-labs/FLUX.1-schnell} & Text-to-Image & 23.8 GB & \textless 5s & sehr gut\\ \hline
+      {Efficient-Large-Model/Sana-\_1600M\_1024px} & Text-to-Image & 6.43 GB & \textless 5s & gut\\ \hline
+      {Stabilityai/stable-diffusion-3.5-large} & Text-to-Image & 16.5 GB & 16.8s & befriedigend\\ \hline
+      {Stabilityai/stable-diffusion-3.5-large-turbo} & Text-to-Image & 16.5 GB & 1.6s & ausreichend\\ \hline
+      {Stabilityai/stable-diffusion-3.5-large} & Text-to-Image & 16.5 GB & 1.6s& befriedigend\\ \hline
+      {Qwen/QwQ-32B-Preview} & Text-to-Text & \textgreater 50GB & 8s & sehr gut\\ \hline
+      {gemini-1.5-pro} & Text-to-Text & \textgreater 100GB & 10s & sehr gut\\ \hline
+      {mistralai/Mistral-7B-Instruct-v0.3} & Text-to-Text & 15.5 GB & \textgreater5s & sehr gut\\ \hline
+  \end{tabular}
+  \caption{Vergleich der generativen Machine Learning Modelle}\label{tab:table_modellvergleich}
+\end{table}
+
+\clearpage
 
 \subsection{Auswahlprozess Web-Technologien}
 Um geeignete Technologien für die Entwicklung der Applikation zu finden, wird ein Auswahlprozess durchgeführt.
