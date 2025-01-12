@@ -93,17 +93,32 @@ Zusätzlich enthält das Deployment sowohl Konfigurations- als auch Secrets-Date
 
 \textbf{Backend}
 Ziel der Backend-Architektur ist es, die Datenhaltung und -verarbeitung zu gewährleisten und die benötigten Aufrufe zu anderen Komponenten zu ermöglichen.
-Im Rahmen dieses Erstenwurfs wird zunächst ein einzelner Service konzipiert, der die Datenhaltung und -verarbeitung übernimmt, genannt Social Media Campaign Service (SCM Service)
+Im Rahmen dieses Erstenwurfs wird zunächst ein einzelner Service konzipiert, der die Datenhaltung und -verarbeitung übernimmt, genannt Social Media Campaign Service (SMC Service)
 
-Der SCM Service stellt eine REST-API bereit, welche die Kommunikation mit dem Frontend ermöglicht.
+Der SMC Service stellt eine REST-API bereit, welche die Kommunikation mit dem Frontend ermöglicht.
 Die REST-API setzt sich aus verschiedenen Endpunkten zusammen, welche jeweils die verfügbaren Ressourcen und Aktionen beschreiben.
 
 Folgende Ressourcen stellt der Service bereit:
 \begin{itemize}
-    \item Endpunkt 1
-    \item Endpunkt 2
-    \item Endpunkt 3
+    \item \textbf{/generate-content} - POST: Dieser Endpunkt dient der generierung und Speicherung von Social Media Content.
+    \item \textbf{/get-content} - GET: Dieser Endpunkt ermöglicht das Abrufen von generiertem Social Media Content.
 \end{itemize}
+
+Die implementierung des SMC Services erfolgt über das Python Framework Flask\footcite{flask}.
+Zur Kommunikation mit den Google Cloud Services wird die Google Cloud Python SDK\footcite{google_cloud_sdk} verwendet.
+
+Mithilfe der Google Cloud Python SDK und entsprechender Konfiguration des API Clients wird die Kommunikation mit den als Cloud Service gehosteten Text-to-Text- und Text-to-Image-Modellen ermöglicht.
+Der POST Endpunkt wird vom Frontend aufgerufen, sobald der Benutzter seine Eingaben im Frontend abgeschlossen hat und den Content final generieren möchte.
+Anschließend werden die Eingabeparameter über ein HTTP-Request-Body Objekt im JSON Format an den SMC Service gesendet.
+Dieser verarbeitet den Request und routet diesen an den zuständigen POST Endpunkt.
+Über den POST Endpunkt wird anschließend durch Verwendung der Google Cloud Rest-API ein weiterer HTTP-Request and den Text-to-Text-Modell Cloud Service gesendet.
+Der Text-to-Text-Modell Cloud Service generiert anschließend aus den Eingaben einen finalen Eingabeprompt und sendet eine HTTP Antwort mit den Ergebnissen der Generierung als HTTP-Response-Body, welche vom SMC Service entgegengenommen und verarbeitet wird.
+Der SMC Service verwendet anschließend den finalen Eingabeprompt, und tätigt zwei weitere HTTP Aufrufe, parametrisiert mit dem generierten Eingabeprompt, an den Text-to-Image-Modell Cloud Service und den Text-to-Text-Modell Cloud Service über die Google Cloud Rest-API, um die vom User geforderten Inhalte final zu generieren.
+Die generierten Social Media Content Inhalte werden anschließend vom SMC Service verarbeitet, über einen HTTP Aufruf in der Datenbank gespeichert und an via HTTP Antwort auf die initiale Anfrage an das Frontend zur Visualisierung zurückgegeben.
+
+Der GET Endpunkt wird vom Frontend aufgerufen, sobald der Benutzer über die entsprechende Funktion im Frontend die Historie der generierten Inhalte einsehen möchte.
+Hierzu greift der GET- Endpunkt des SMC Services über die Google Cloud API an die konfigurierte Datenbank zu und gibt die gespeicherten Inhalte mithilfe einer Paginierungslogik an das Frontend per HTTP Antwort zurück.
+Durch Ergänzung des Resource parameters kann der Benutzer zudem zwischen den verschiedenen Ressourcen, wie z. B. generierte Texte oder Bilder, wechseln.
 
 Die Datenhaltung wird über eine Datenbank realisiert, welche innerhalb des Google Cloud Services betrieben wird.
 Folgende Daten werden in der Datenbank gespeichert:
