@@ -231,7 +231,7 @@ Der Speicherbedarf für generierte Bilder steigt neben dem eintretendem Szenario
 Dabei ist zu beachten, dass die Kosten für den Speicherplatz im Google Cloud Storage mit der Zeit steigen.
 
 Auf die ersten drei Jahre sind dabei folgende Kosten zu erwarten:
-\includegraphics{abbildungen/KostenSpeicher}
+\includegraphics[width=0.8\textwidth]{abbildungen/KostenSpeicher}
 
 \textbf{Generierung und Speicherung von Texten}
 Die Textgenerierung wird mit dem Text-to-Text-Modell Mistral 7B durchgeführt, welches ebenfalls auf der Google Cloud Plattform als Endpunkt bereitgestellt wird.
@@ -247,7 +247,7 @@ Daraus ergeben sich folgende Kostenstrukturen:
 
 Zum Speichern der generierten Texte wird der Data Store verwendet.
 Dieser wird in der Region Belgien gehostet und wird nach Lese- und Schreibvorgängen, sowie den gespeicherten Daten berechnet.
-\includegraphics{abbildungen/kostendatastore}
+\includegraphics[width=0.8\textwidth]{abbildungen/kostendatastore}
 \footcite{GoogleDatastorePricing2025}
 
 Dabei wird nur die Nutzung abgerechnet, welche die Freikontingente überschreitet.
@@ -281,7 +281,7 @@ Für den Speicherbedarf ist zu beachten, dass der Text bei einem Social Media Po
 \end{itemize}
 
 Daraus ergeben sich folgende Kosten in den kommenden drei Jahren:
-\includegraphics{abbildungen/Kosten_Speicher_Text}
+\includegraphics[width=0.8\textwidth]{abbildungen/Kosten_Speicher_Text}
 
 Dabei ist über die Jahre bereits ein realisiertes Wachstum betrachtet, welches sich in den Kosten widerspiegelt.
 Dennoch sind selbst im Best Case Szenario die Kosten für den Speicherplatz im Data Store vernachlässigbar.
@@ -407,4 +407,4 @@ Die Betrachtung erfolgt auf monatlicher Basis.
 Das impliziert, dass sämtliche Kosten auf einen monatlichen Faktor runtergebrochen werden, ebenso, wie die Erträge.
 Daraus ergibt sich, dass die Anwendung ca. 3760 Nutzer benötigt, um den Break-Even-Point zu erreichen.
 
-\includegraphics{abbildungen/Break_Even}
+\includegraphics[width=0.8\textwidth]{abbildungen/Break_Even}
