@@ -310,26 +310,41 @@ Zur Überprüfung der Relevanz wird die aktuelle Stackoverflow Developer Survey 
 Zusätzlich werden die Plattformen Github.com und Stackoverflow.com untersucht, inwiefern die Technologien dort vertreten sind.
 Für die Frontend Frameworks im Speziellen werden die verfügbaren Libraries im Node Package Manager (NPM) untersucht.
 
-Aus der Analyse lassen sich folgende Daten ableiten:
+Zur Bestimmung des Erscheinungsjahres der Technologien werden die offiziellen Dokumentationen bzw. die ersten Commits in den Repositories auf Github.com herangezogen.
+Daraus ergeben sich folgende Quellen:
+\begin{enumerate}
+    \item Angular - Github Release\footcite{githubAngularReleaseV090}
+    \item VueJS - Podcast mit Entwickler von VueJS\footcite{eggheadEvanYou}
+    \item React - Github Changelog\footcite{githubReactCHANGELOG}
+    \item Flask - PyPi Release\footcite{pypiFlask}
+    \item Django - PyPi Release\footcite{pypiDjango}
+    \item Cherrypy - PyPi Release\footcite{pypiCherryPy}
+    \item PostgreSQL - Offizieller Blogpost von PostgreSQL\footcite{postgresqlHappyBirthday}
+    \item MySQL - Amazon AWS Artikel\footcite{amazonWhatMySQL}
+    \item Mongodb - Offizieller MongoDB Artikel\footcite{mongodbMongoDBEvolved}
+\end{enumerate}
+
+\newpage
+Aus der vorangegangenen Analyse lassen sich folgende Daten ableiten:
 
 \begin{table}[h!]
     \centering
     \begin{tabular}{|l|p{2cm}|p{3cm}|p{3cm}|p{3cm}|}
         \hline
         \rowcolor{lightgray} Name & \textbf{Datum Veröffentlichung} & \textbf{Aktive Fragen auf Stackoverflow} & \textbf{Repositories auf Github mit Tag} & \textbf{Abhängigkeiten NPM} \\ \hline
-        Angular & 2010\footcite{githubAngularReleaseV090} & 306.845 & 57.588 & 14.607 \\ \hline
-        VueJS & 2014\footcite{eggheadEvanYou} & 108.341 & 26.600 & 80.824 \\ \hline
-        React & 2013\footcite{githubReactCHANGELOG} & 481.823 & 173.000 & 240.000 \\ \hline
+        Angular & 2010 & 306.845 & 57.588 & 14.607 \\ \hline
+        VueJS & 2014 & 108.341 & 26.600 & 80.824 \\ \hline
+        React & 2013 & 481.823 & 173.000 & 240.000 \\ \hline
         \hline
-        Flask & 2010\footcite{pypiFlask} & 55.856 & 50.985 & - \\ \hline
-        Django & 2005\footcite{pypiDjango} & 313.041 & 67.366 & - \\ \hline
-        Cherrypy & 2004\footcite{pypiCherryPy} & 1.370 & 147 & - \\ \hline
+        Flask & 2010 & 55.856 & 50.985 & - \\ \hline
+        Django & 2005 & 313.041 & 67.366 & - \\ \hline
+        Cherrypy & 2004 & 1.370 & 147 & - \\ \hline
         \hline
-        PostgreSQL & 1996\footcite{postgresqlHappyBirthday} & 178.607 & 56.562 & - \\ \hline
-        MySQL & 1995\footcite{amazonWhatMySQL} & 661.661 & 75.826 & - \\ \hline
-        Mongodb & 2009\footcite{mongodbMongoDBEvolved} & 176.192 & 111.693 & - \\ \hline
+        PostgreSQL & 1996 & 178.607 & 56.562 & - \\ \hline
+        MySQL & 1995 & 661.661 & 75.826 & - \\ \hline
+        Mongodb & 2009 & 176.192 & 111.693 & - \\ \hline
     \end{tabular}
-    \caption{Bewertung von Technologien}\label{tab:Analyseergebnise Relevanz der Plattformen}
+    \caption{Analyseergebnise Relevanz der Plattformen}\label{tab:Analyseergebnise Relevanz der Plattformen}
 \end{table}
 
 Darüber hinaus können die Ergebnisse der Studie von Bielek et al. herangezogen werden, welche Aufschluss über die Performance der einzelnen Technologien geben.
@@ -365,7 +380,7 @@ Auf Basis der gesammelten Daten und geleisteten Recherchen lassen sich die Techn
 Zuletzt werden die jeweiligen Technologien paarweise miteinander verglichen.
 Dabei wird die Bewertung der einzelnen Kriterien in Relation zueinander gesetzt, um die am besten geeignete Technologie zu identifizieren.
 Neben den erhobenen Daten fließen auch subjektive Einschätzungen in die Bewertung mit ein.
-
+\newpage
 \textbf{Frontend-Framework:}
 
 Angular und VueJS sind beide als Webtechnologie etabliert und weisen eine entsprechende Community auf.
@@ -386,8 +401,8 @@ Aus diesem Grund fiel die Wahl auf VueJS.
 
 In der gesamten Betrachtung der Frontend-Frameworks ist VueJS die Technologie, die am besten zu den Anforderungen passt.
 
+\newpage
 \textbf{Backend-Framework:}
-
 Flask und Django stellen die beiden beliebtesten Python-Frameworks zur Entwicklung von Webapplikationen dar, wobei Django die größere Community aufweist.
 Daraus resultiert ein größeres Angebot an Bibliotheken für Django im Vergleich zu Flask.
 Ebenso die Relevanz der Technologie ist für Django höher einzustufen.
