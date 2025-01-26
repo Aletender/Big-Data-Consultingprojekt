@@ -48,7 +48,7 @@ Diese Eigenschaften werden als fundierte Basis für eine Entwicklung und Optimie
 In diesem Kapitel wird der Erstentwurf für das Applikationsdesign vorgestellt.
 Der Erstentwurf beschreibt sowohl die Frontend- als auch die Backend-Architektur der Applikation.
 
-\textbf{Frontend}
+\textbf{Frontend}\newline
 Das Frontend stellt den Interaktionsbereich für den Benutzer dar.
 Entsprechend ist es wichtig, dass das Frontend übersichtlich und intuitiv gestaltet ist.
 Dabei ist es entscheidend, die komplexen Zusammenhänge der Applikation und abgebildeten Prozesse so zu visualisieren, dass der Benutzer nicht überfordert wird.
@@ -64,16 +64,61 @@ Zur Umsetzung gilt folgendes zu beachten:
     \item Die Farben sollen so gewählt werden, dass sie die Aufmerksamkeit des Benutzers auf wichtige Elemente lenken.
     \item Unternehmens- und Applikationslogos müssen an strategischen Stellen platziert werden.
 \end{itemize}
+\newpage
 
 Aus den genannten Anforderungen wurden folgende Design-Elemente abgeleitet:
 
-Landing Page
+\textbf{Landing Page Darstellung und wiederkehrende Elemente}\newline
+Das Konzept zur Landing Page besteht aus mehreren runden Interaktionselementen (Bubbles), welche die verschiedenen Funktionen der Applikation repräsentieren.
+Dabei werden die wichtigen Funktionen, wie z. B. die Generierung von Social Media Content, durch eine größere Bubble hervorgehoben.
+Durch den Größenunterschied der Bubbles kann die Prominenz der Funktionen visualisiert werden.
+Als zentrales, wiederkehrendes Element über alle Seiten hinweg, wird eine Textausgabe zentral platziert, welche den Benutzer durch die Applikation führt.
+Diese Textausgabe fungiert dabei als interaktive Komponente, die dem Benutzer ein personalisiertes Erlebnis bietet.
+Der Navigationsbereich wird als Sidebar auf der linken Seite platziert, erreichbar über ein Burger-Icon.
+Wie im UX Design vorgesehen, wird das DISH POS Logo daneben platziert, wodurch es ein strategisch platziertes Element darstellt.
+Zuletzt findet sich ein Login Icon in der oberen rechten Ecke, welches den Benutzer zum Login-Bereich führt.
+Insgesamt ist die Darstellung minimalistisch gehalten, um den Benutzer auf die wichtigsten Elemente zu fokussieren.\footnote{Siehe Anhang, Abbildung \ref{fig:landing-page-concept}.}
 
-Dialog Anzeige
+Das aus dem Entwurf abgeleitete Design zeigt zusätzlich, dass durch entsprechende Farbgebung die Corporate Identity des Unternehmens eingebunden wird.\footnote{Siehe Anhang, Abbildung \ref{fig:landing-page}.}
 
-Post Editor
+\textbf{Dialog Darstellung}\newline
+Die Dialog-Darstellung strukturiert sich durch ein zentrales Eingabefeld, in welchem der Benutzer durch einen geführten Dialog mehrere Fragen beantwortet.
+Die dadurch gesammelten Eingaben werden später in der Generierung von Social Media Content verwendet, indem diese systematisch in die Prompts einfließen.
+Das zentrale Textausgabeelement wird durch eine Fortschrittsanzeige ergänzt, welche den Benutzer über den aktuellen Stand des Dialogs informiert.
+Dadurch wird erreicht, dass der Benutzer jederzeit über den Fortschritt informiert ist und dadurch die Akzeptanz der Applikation erhöht wird.
+Nach dem Beantworten einer Frage wird der Benutzer durch eine Animation auf die nächste Frage hingewiesen.
+Dadurch wird die minimalistische Darstellung der Anwendung beibehalten und eine übermäßige Informationsflut vermieden.\footnote{Siehe Anhang, Abbildung \ref{fig:dialog-concept}.}
 
-Kalender ansicht
+Im detaillierten Design wird durch den Einsatz der DISH POS Farben die Benutzbarkeit weiter verstärkt.
+Durch das Färben der weiterführenden Buttons in Orange bzw. das blaue Hervorheben für ein Navigieren in vorherige Schritte, wird eine wiederkehrende Designkomponente eingeführt.
+Zudem wird durch die umgangssprachliche Formulieren, sowohl der Fragen als auch der Navigation, eine persönliche Ansprache an den Benutzer gewährleistet.
+Ebenso findet sich die primäre orangene Farbe in der Fortschrittsleiste wieder, wodurch die Corporate Identity des Unternehmens eine strategische Position erfährt. \footnote{Siehe Anhang, Abbildung \ref{fig:dialog-page}.}
+
+\textbf{Post Editor Darstellung}\newline
+Der Post Editor stellt die komplexeste Komponente der Applikation dar.
+Dieser gliedert sich in zwei Hauptbereiche, dem eigentlichen Editor und einer Vorschau der generierten Inhalte.
+Der Editor ist dabei auf die minimalen Funktionen reduziert, um den Benutzer nicht zu überfordern.
+Jede Eingabe ist dabei als eigenes Element dargestellt und beinhaltet die zuvor generierten Texte und Bilder.
+Über den Editor kann der Nutzer die generierten Inhalte und Einstellungen anpassen, darunter den Zeitplan, den Text und das Bild.
+Die Vorschau zeigt den geplanten Post im Design der Zielplattform, beispielsweise dargestellt für Instagram.\footnote{Siehe Anhang, Abbildung \ref{fig:editor-concept}.}
+
+Im detaillierten Design wurden die DISH POS Farben in den Editor integriert, konsistent zu den bisherigen Darstellungen.
+Abweichend vom initialen Konzept wurde zusätzlich ein Bereich für die Eingabe der Call-to-Action hinzugefügt.\footnote{Siehe Anhang, Abbildung \ref{fig:editor-page}.}
+
+\textbf{Kalender Darstellung}\newline
+Der Kalender erlaubt dem Nutzer die geplanten Posts zu verwalten und zu bearbeiten.
+Dieser strukturiert sich Grundlegend durch eine Übersicht der aktuellen Woche, welche über eine Navigation durch die Wochen erweitert werden kann.
+Jede Woche beinhaltet eine Kachel je Post, welche Information darüber enthält, wann der Post veröffentlicht wird und welcher Inhalt geplant ist.
+Zudem ist für den User ersichtlich, auf welcehr Plattform der Post veröffentlicht wurde.
+Über Chips in der Fusszeile ist für den Nutzer transparent, ob ein Post veröffentlicht wurde, ob dieser geplant ist oder ob ein Entwurf vorliegt.
+Dabei wird jeder Status in einer eigenen Farbe dargestellt, um einen schnellen Überblick zu gewährleisten.
+Das zentrale Textausgabeelement wird in den oberen rechten Bereich verschoben, um den Fokus auf die Kalenderansicht zu legen, dabei jedoch weiterhin präsent zu sein.
+Darüber werden dem Nutzer, in Anlehnung an die Landing Page, Bubbles mit den wichtigsten Funktionen der Kalenderansicht angezeigt.\footnote{Siehe Anhang, Abbildung \ref{fig:calendar-concept}.}
+
+Abweichend zum Konzept wurde die Darstellung in der detaillierten Ansicht auf ein Icon für die Plattform reduziert.
+Zudem wurde die Navigation durch den Kalender visuell reduziert, da davon auszugehen ist, dass nutzer selten weitreichende Zeiträume im Kalender betrachten werden.
+Diese ist in der Standardansicht versteckt und wird über ein Hover-Element sichtbar.\footnote{Siehe Anhang, Abbildung \ref{fig:editor-page}.}
+\newpage
 
 Als technische Basis für das Frontend wird, als Ergebnis der vorangegangenen Recherche, Vue.js verwendet.
 Dieses wird zum Betrieb im Kubernetes Engine Cluster bereitgestellt.
@@ -91,7 +136,7 @@ In der Entwicklungsphase ermöglicht der Multi-Pod-Betrieb ein frühes Testen vo
 
 Zusätzlich enthält das Deployment sowohl Konfigurations- als auch Secrets-Dateien, um die Applikation zu konfigurieren und sensible Daten zu schützen.
 
-\textbf{Backend}
+\textbf{Backend}\newline
 Ziel der Backend-Architektur ist es, die Datenhaltung und -verarbeitung zu gewährleisten und die benötigten Aufrufe zu anderen Komponenten zu ermöglichen.
 Im Rahmen dieses Erstenwurfs wird zunächst ein einzelner Service konzipiert, der die Datenhaltung und -verarbeitung übernimmt, genannt Social Media Campaign Service (SMC Service)
 
@@ -134,8 +179,7 @@ Das Hosting des SCM Service erfolgt ebenfalls über den Google Kubernetes Engine
 Dabei ist das Kubernetes Deployment gleich aufgebaut wie das Frontend-Deployment.
 Bei Bedarf können die Deployments unabhängig voneinander skaliert bzw. konfiguriert werden.
 
-\textbf{Strategie zur Datenhaltung}
-
+\textbf{Strategie zur Datenhaltung}\newline
 Zum Speichern der textbasierten Daten kann entschieden werden, ob Cloud Spanner\footcite{google_spanner} als relationale Datenbank oder Data Store\footcite{google_datastore} als NoSQL-Datenbank verwendet wird.
 
 Die Untersuchung von Khan et al. zeigt, dass sich der NoSQL-Ansatz besser dazu eignet, erste Prompts und deren Antworten zu speichern.
@@ -146,8 +190,7 @@ Der Einsatz von einer relationalen Datenbank bietet sich in einem nachgelagerten
 Entsprechend wird für den produktiven Einsatz des Prototypen Data Store betrachtet.
 Zur lokalen Entwicklung wird entsprechend MongoDB eingesetzt, da dies der NoSQL Favorit aus der vorangegangenen Recherche ist.
 
-\textbf{Speicherung von Bildern}
-
+\textbf{Speicherung von Bildern}\newline
 Neben den textbasierten Daten müssen auch die generierten Bilder gespeichert werden.
 Dadurch wird eine effiziente Speicherung und Verwaltung der generierten Bilder gewährleistet und ein wiederverwendbarer Zugriff auf die Bilder ermöglicht.
 Zur Speicherung von Bildern wird Google Cloud Storage\footcite{google_storage} verwendet.
@@ -185,27 +228,20 @@ Die technische Architektur der Applikation kann wie folgt illustriert werden:
 
 \subsection{Antizipation der Kosten und des Nutzens}
 
-Zur Berechnung der variablen Kosten im prodoktiven Betrieb der Plattform sind folgende Facetten zu betrachten.
+Zur Berechnung der variablen Kosten im prodoktiven Betrieb der Plattform sind verschiedene Facetten zu betrachten, darunter die entstehenden Kosten für das Generieren und
+speichern von Bild- und Textinhalten, die anfallenden Betriebskosten durch in Anspruchsnahme von Cloud Services sowie später anfallende Personalkosten für die Wartung und Weiterentwicklung der Plattform.
+
+Um die Kostenstruktur der Plattform zu schätzen, werden verschiedene Szenarien betrachtet, welche die Kosten der Applikation unterschiedlich beinflussen.
+Dabei wird zwischen einem Best Case, einem Worst Case und einem realistischen Szenario unterschieden, welche sich maßgeblich durch die erwarten Nutzerzahlen unterscheiden.
+Für die nachfolgende Kostenschätzung werden folgende Nutzerzahlen angenommen:
 
 \begin{itemize}
-    \item Kosten für Generierung und Speicherung von Bildern
-    \item Kosten für Generierung und Speicherung von Texten
-    \item Kosten für die Speicherung von Metadaten
-    \item Kosten für die Bereitstellung der REST-API
-    \item Kosten für die Bereitstellung des Frontends
-    \item Kosten für die Bereitstellung des Backends
-    \item Kosten für die Bereitstellung des CDN
-    \item Kosten für die Bereitstellung des Data Store
-    \item Kosten für die Bereitstellung des Google Cloud Storage
-    \item Kosten für die Bereitstellung des Kubernetes Clusters
+    \item Best Case: 5000 User
+    \item Worst Case: 50 User
+    \item Realistisches Szenario: 500 User
 \end{itemize}
 
-Zusätzlich sind folgende Szenarien anzunehmen, um die Kostenstruktur zu analysieren:
-Best Case Szenario: 5000 User
-Worst Case Szenario: 50 User
-Realistisches Szenario: 500 User
-
-\textbf{Generierung und Speicherung von Bildern}
+\textbf{Generierung und Speicherung von Bildern}\newline
 Zum Generieren der Bilder wird das Text-to-Image-Modell Flux 1 schnell verwendet, welches auf der Google Cloud Plattform als Endpunkt bereitgestellt wird.
 Dabei wird als Maschine ein in Belgien gehostetes n1-standard-4 gewählt, welches 4 vCPUs und 15 GB RAM besitzt.
 Dies ist die kleinstmögliche Konfiguration für das Modell und verursacht Kosten von 0,24 USD pro aufgewendete Maschinenstunde.\footcite{GoogleVertexAI2025}
@@ -216,7 +252,7 @@ Basierend auf den festgelegten Szenarien ergibt sich folgende Kostenstruktur, be
 \begin{itemize}
     \item Best Case: 5000 User * 10 Anfragen * 0,5 s * 0,24 USD = 600 USD
     \item Worst Case: 50 User * 10 Anfragen * 0,5 s * 0,24 USD = 6 USD
-    \item Realistisch: 500 User * 10 Anfragen * 0,5 s * 0,24 USD = 60 USD
+    \item Realistisches Szenario: 500 User * 10 Anfragen * 0,5 s * 0,24 USD = 60 USD
 \end{itemize}
 
 Die generierten Bilder werden im Google Cloud Storage gespeichert.
@@ -227,7 +263,7 @@ Basierend auf den festgelegten Szenarien ergibt sich folgende Kostenstruktur:
 \begin{itemize}
     \item Best Case: 5000 User * 10 Anfragen * 128 KB * 0,02 USD = 12,8 USD
     \item Worst Case: 50 User * 10 Anfragen * 128 KB * 0,02 USD = 0,128 USD
-    \item Realistisch: 500 User * 10 Anfragen * 128 KB * 0,02 USD = 1,28 USD
+    \item Realistisches Szenario: 500 User * 10 Anfragen * 128 KB * 0,02 USD = 1,28 USD
 \end{itemize}
 
 Der Speicherbedarf für generierte Bilder steigt neben dem eintretendem Szenario ebenso mit der Zeit an.
@@ -236,7 +272,7 @@ Dabei ist zu beachten, dass die Kosten für den Speicherplatz im Google Cloud St
 Auf die ersten drei Jahre sind dabei folgende Kosten zu erwarten:
 \includegraphics[width=0.8\textwidth]{abbildungen/KostenSpeicher}
 
-\textbf{Generierung und Speicherung von Texten}
+\textbf{Generierung und Speicherung von Texten}\newline
 Die Textgenerierung wird mit dem Text-to-Text-Modell Mistral 7B durchgeführt, welches ebenfalls auf der Google Cloud Plattform als Endpunkt bereitgestellt wird.
 Dabei wird die gleiche Konfiguration wie beim Bildmodell verwendet, entsprechend Region Belgien und n1-standard-4 als Maschine.
 Die anfallenden Maschinenstunden werden jedoch geringer angenommen, da die Inferenzzeit pro Anfrage im Testbetrieb bei ca. 100 ms lag.
@@ -245,7 +281,7 @@ Daraus ergeben sich folgende Kostenstrukturen:
 \begin{itemize}
     \item Best Case: 5000 User * 10 Anfragen * 0,1 s * 0,24 USD = 120 USD
     \item Worst Case: 50 User * 10 Anfragen * 0,1 s * 0,24 USD = 1,2 USD
-    \item Realistisch: 500 User * 10 Anfragen * 0,1 s * 0,24 USD = 12 USD
+    \item Realistisches Szenario: 500 User * 10 Anfragen * 0,1 s * 0,24 USD = 12 USD
 \end{itemize}
 
 Zum Speichern der generierten Texte wird der Data Store verwendet.
@@ -289,7 +325,7 @@ Daraus ergeben sich folgende Kosten in den kommenden drei Jahren:
 Dabei ist über die Jahre bereits ein realisiertes Wachstum betrachtet, welches sich in den Kosten widerspiegelt.
 Dennoch sind selbst im Best Case Szenario die Kosten für den Speicherplatz im Data Store vernachlässigbar.
 
-\textbf{Plattform}
+\textbf{Plattform}\newline
 Die Plattform setzt sich aus folgenden Komponenten zusammen:
 \begin{itemize}
     \item Google Kubernetes Engine Cluster
@@ -330,13 +366,13 @@ Zur Vereinfachung der Berechnung werden ähnliche Kosten für das Logging angeno
 Für die Nutzung des IAM Services fallen keine Kosten an.\footcite{GoogleIAMPricing2025}
 Für den Secret Manager ist in der Standardversion eine Nutzung von 100 Secrets kostenlos, weshalb auch hier keine Kosten anfallen.\footcite{GoogleSecretManagerPricing2025}
 
-\textbf{Personalkosten}
+\textbf{Personalkosten}\newline
 Für die Weiterentwicklung des Produktes werden zwei Entwickler benötigt.
 Für den Betrieb des Produktes, im Sinne von Support, wird ein Service-Desk Mitarbeiter benötigt.
 Die Kosten für einen Entwickler belaufen sich auf 100€ die Stunde und für einen Service-Desk Mitarbeiter auf 35€ die Stunde.
 
 
-\textbf{Entwicklungskosten}
+\textbf{Entwicklungskosten}\newline
 Zur Entwicklung der Plattform sind nach Abschluss dieser Arbeit noch folgende Arbeiten notwendig, um ein produktiven Betrieb zu gewährleisten:
 \begin{itemize}
     \item Entwicklung und Anpassung der Frontend-Applikation
