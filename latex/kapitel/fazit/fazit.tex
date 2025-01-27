@@ -3,6 +3,80 @@
 
 \subsection{Zusammenfassung der Ergebnisse}
 
+Die aktuellen Bemühungen der Forschung im Bereich generativer Machine Learning Algorithmen haben zu der Entwicklung von jenen Algorithmen geführt, dessen Ausgaben ohne Weiteres nicht von real erstellten Informationen zu unterscheiden ist.
+Im Bereich des Marketings werden die daraus gewonnenen Erkenntnisse genutzt, um eine, im Vergleich zu konventionellen Methoden, effizientere und effektivere Erstellung von Marketinginhalten zu ermöglichen.
+Die ki-gestützte Generierung von Social Media Inhalten stellt dabei eine vielversprechende Möglichkeit dar, um die Bedürfnisse von Unternehmen im Bereich des Social Media Marketings zu adressieren.
+Durch die Verwendung von aussagekräftigen Prompts, welche die Generierung von Inhalten anleiten, kann die Qualität der generierten Inhalte und somit indirekt die Konversionsrate gesteigert werden.
+
+Im Rahmen dieser Projektarbeit wurde auf Basis verschiedener analytischer und konzeptioneller Methoden ein Konzept für eine KI-gestützte Social Media Marketing Plattform entwickelt.
+Zur Fundierung des erarbeiteten Konzepts wurde eine weitreichende Analyse der Kundenbedürfnisse und der Wettbewerbslage durchgeführt.
+Die daraus abgeleiteten Erkenntnisse wurden durch eine SWOT-Analyse ergänzt, um eine geschärfte Sicht auf die Stärken und Schwächen, sowie mögliche Chancen und Risiken des angestrebten Produkts zu erhalten.
+Anknüpfend an die vorangegangenen Analysen wurde, innerhalb eines ausführlichen Vergleichs verschiedener Plattform, Instagram als geeignete Social Media Plattform ausgewählt.
+
+Zur finanziellen Perspektive des Projekts wurde eine Strategie zur Monetarisierung der Plattform entwickelt, welche zentral auf einem Freemium-Modell basiert.
+Dabei wurde zudem betrachtet, neben der direkten Monetarisierung durch den Umsatz der Abonnements, weitere indirekte Einnahmequellen zu erschließen, die sich beispielsweise durch das Sammeln von Daten über das Nutzerverhalten ergeben.
+
+Um die technische Konzeptionierung vollständig zu ermöglichen, wurden die wichtigsten Eigenschaften der Social Media Posts untersucht, basierend auf verschiedenen vorangegangen Studien.
+Die identifizierten Eigenschaften stellen den Kern der zu generierenden Inhalte dar.
+
+Zur Erarbeitung des technischen Konzepts wurde eine umfassende Evaluierung der einzusetzenden Technologien durchgeführt.
+Die Evaluierung gliedert sich in die Untersuchung der einzusetzenden Large Language Modelle zur Generierung von Texten und Bildern, sowie benötigte Komponenten der Webanwendung, inklusive deren Betrieb.
+Dies wurde im Hinblick auf den Einsatz der Google Cloud Platform durchgeführt, welche verschiedene Dienste beinhaltet, die den Betrieb der Plattform ermöglichen.
+
+Die Evaluation der Large Language Modelle wurde durch einen praktischen Vergleich verschiedener Modelle durchgeführt.
+Bei der Evaluation der einzusetzenden Technologien für die Webanwendung wurde die Paprika-Methode angewendet, um die verschiedenen Komponenten zu realisieren.
+Durch dieses Vorgehen konnte insgesamt ein Text-Generierungsmodell, ein Bild-Generierungsmodell, sowie die Technologien für Frontend, Backend und Datenbank ausgewählt werden.
+
+Im nächsten Schritt wurde ein Erstentwurf der App entwickelt, welcher sowohl den Aufbau der Plattform, als auch die visuelle Gestaltung der Plattform umfasst.
+Der Entwurf beinhaltet dazu eine UX Guideline, welche eine einheitliche Gestaltung der Plattform sicherstellt.
+Diese UX Guideline wurde in ersten Entwürfen der Landing Page, des Dialogs, des Post Editors und der Kalenderansicht umgesetzt.
+
+Zur Darstellung des Aufbaus der Plattform wurde ein Architekturmodell entwickelt, welches die verschiedenen Komponenten, als auch die Interaktionen zwischen diesen, darstellt.
+Dieses besteht zum einen aus den benötigten Services der Google Cloud Platform, zum anderen aus den eigenen Microservices bzw. Frontends als Kubernetes Deployments.
+Im Rahmen des Erstenwurfs wurde insbesondere der Aufbau der Kubernetes Deployments dargestellt.
+
+Abschließend wurde, basierend auf dem Erstenwurf, eine Kostenschätzung durchgeführt, um die Rentabilität der geplanten Plattform zu bewerten.
+Dabei wurden die entstehenden Kosten für verschiedene Szenarien betrachtet, wodurch eine Abschätzung des Break-Even-Points ermöglicht wurde.
+
 \subsection{Handlungsempfehlungen}
 
+Das entwickelte Konzept zeigt auf, das eine KI-gestützte Social Media Marketing Plattform eine vielversprechende Möglichkeit darstellt, die aktuellen Bedürfnisse von Unternehmen im Gastronomiebereich, im Hinblick auf die Erstellung von Social Media Inhalten, zu adressieren.
+Abgleitet aus den Ergebnissen dieser Arbeit ist es schlussfolgernd empfehlenswert, eine solche Plattform zu entwickeln.
+Dabei ist vornehmlich die Untersuchung der wichtigsten Eigenschaften von Social Media Posts sowie die daraus abgeleiteten Prompts für die Generierung von Inhalten von hoher Relevanz.
+Diese stellen eine wissenschaftliche fundierte Strukturierung der Inhalte dar, welche eine hohe Qualität der generierten Inhalte ermöglicht.
+Dabei ist zu erwarten, dass bei der Umsetzung in einem konkreten Anwendungsfall diese Erkenntnisse unverändert übernommen werden können.
+Bei der Erarbeitung des Prototypen und den initial durchgeführten Tests des Promptings, hat sich insbesondere gezeigt, dass die Qualität der generierten Inhalte gesteigert werden konnte, wenn die wichtigen Merkmale beachtet werden.
+Als diese wurden unter anderem identifiziert, dass auf Kreativität, Einzigartigkeit, Zielgruppenorientierung, Konversionsorientierung, Bildbeiträge, persönliche und emotionale Ansprache sowie Story telling geachtet werden muss.
+
+Bei den eingesetzten Technologien ist es empfehlenswert, diese auf Basis der gewonnenen Erkenntnisse auszuwählen.
+Bei der Entwicklung des Prototypen wurden die Vorzüge der einzelnen Technologien deutlich, vornehmlich das moderne Frontend-Framework Vue.JS ermöglichte den Bau eines ersten Frontends.
+
+Dennoch ermöglicht der Einsatz von Kubernetes als Betriebsplattform eine hohe Flexibilität, welche es ermöglicht, die Technologien im Laufe der Entwicklung anzupassen.
+Dies kann beispielsweise notwendig sein, wenn das umsetzende Projektteam weitreichende Erfahrungen mit anderen verwandten Technologien hat.
+Zudem ist das erstellte Architekturkonzept auf den Einsatz in der Google Cloud Platform ausgelegt, inklusive der zur Verfügung stehenden Dienste.
+Bei der Umsetzung des Prototypen hat sich gezeigt, dass eine Integration innerhalb der, durch die Google Cloud Platform bereitgestellten, Dienste, eine schnelle Implementierung ermöglicht wird.
+Dies wird durch die native Integration der verschiedenen Dienste weiter unterstützt.
+
+Dadurch soll dieses Konzept möglichst weitreichend kompatibel mit den Anforderungen eines konkreten Anwendungsfalls sein.
+Die im Konzept ausgewählten Dienste können dennoch durch äquivalente Dienste anderer Cloud-Anbieter ersetzt werden, falls dies im konkreten Anwendungsfall Vorteile bieten sollte.
+
+Die im Rahmen des Erstenwurfs entwickelte UX Guideline, sowie die erstellen visuellen Entwürfe, vermitteln eine klare Vorstellung der geplanten Plattform.
+Diese können in ein bestehendes UX Design System integriert werden, um die geplante Plattform in ein bestehendes Corporate Design zu integrieren.
+Dabei ist es empfehlenswert, die in dieser Arbeit erstellten Konzepte in einem iterativen Prozess zu sichten und ggf. zu individualisieren, um die geplante Plattform in einem bestehenden Unternehmenskontext zu integrieren.
+Die, in dieser Arbeit erarbeiteten visuellen Entwürfe, gliedern sich sowohl in einer konzeptionellen, als auch eine detailliertere Darstellung der Plattform als Figma Design.
+Dadurch kann auf Basis der konzeptionellen Darstellung eine individuelle Anpassung an den konkreten Anwendungsfall erfolgen.
+
+Die Kostenschätzung zeigt, dass sowohl der Use Case, als auch die geplante Architektur der Plattform, eine rentable Umsetzung ermöglichen.
+Jedoch handelt es sich dabei um eine Abschätzung, welche auf verschiedenen Annahmen basiert, welche sich im konkreten Anwendungsfall noch ändern können.
+Dabei ist insbesondere der geschätzte finanzielle Betriebsaufwand abhängig von individuellen Faktoren, wie beispielsweise spezielle Verträge mit Cloud-Anbietern oder Synergieeffekte durch andere Projekte.
+Auch die Entwicklungskosten stellen lediglich einen Näherungswert dar, welcher im konkreten Anwendungsfall abweichen kann.
+Zur Sicherstellung einer rentablen Umsetzung ist es daher empfehlenswert, die Kostenschätzung auf Basis des konkreten Anwendungsfalls zu überprüfen und gegebenenfalls anzupassen.
+
 \subsection{Ausblick}
+Die in diesem Konzept entwickelte KI-gestützte Social Media Marketing Plattform beschränkt sich auf den minimalen Funktionsumfang, um die Machbarkeit des Konzepts zu demonstrieren.
+Dabei ist zentral hervorgegangen, dass durch den Einsatz von KI-Technologien eine hohe Qualität der generierten Inhalte erreicht werden kann.
+Dabei wurde die Erhebung von Nutzerdaten, sowie das Auswerten dieser über eine entsprechende Business Intelligence Komponente, nicht weiter betrachtet, sondern lediglich als mögliche Erweiterung vorgesehen.
+In einer weiterführenden Umsetzung erscheint es vielversprechend, diesen Aspekt weiter zu untersuchen, um dadurch die Nutzerdaten weiter zu monetarisieren.
+Zudem liese sich die Plattform an weitere Social Media Plattformen anbinden, wodurch eine breitere Zielgruppe angesprochen werden kann.
+Neben der Ausweitung der Plattform, kann auch eine Erweiterung der Zielbranche erfolgen, indem die Plattform an Bedürfnisse anderer Branchen angepasst wird, beispielsweise der Modebranche oder der Automobilbranche.
+Dabei kann auf die zuvor durchgeführten Untersuchungen zurückgegriffen werden, welche die Eigenschaften der verschiedenen Plattformen untersucht haben.
