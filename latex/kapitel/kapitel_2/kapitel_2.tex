@@ -218,14 +218,19 @@ Um die Bilder über einen Pfad für das Frontend verfügbar zu machen, wird ein 
 Das CDN fungiert als Zwischenspeicher für statische Inhalte und stellt einen, gesondert skalierbaren, Zugriffspunkt für diese Daten bereit.\footcite{google_cloud_cdn_overview}
 Dadurch wird sowohl die benötigte Bandbreite bei der Kommunikation mit den Applikationsservices reduziert, als auch die Ladezeiten für den Benutzer verkürzt.
 Zudem reduzieren sich dadurch die Entwicklungs- und Wartungskosten, da besondere Encoding- und Skalierungsschritte entfallen.
+\newpage
 
 Das CDN wird so konfiguriert, dass es auf den angelegten Bucket im Google Cloud Storage zugreift und die Bilder an den Benutzer ausliefert.
 Dabei werden Synergieeffekte genutzt, da das CDN bereits in der Google Cloud integriert ist und somit eine einfache Konfiguration ermöglicht.
 
 Die technische Architektur der Applikation kann wie folgt illustriert werden:
-\includegraphics[width=0.8\textwidth]{abbildungen/Drawio/SystemArchitektur}
 
-\subsection{Umsetzung des Applikationsdesigns in ein Prototypen}\label{subsec:umsetzung-des-applikationsdesigns-in-ein-prototypen}
+\begin{figure}[htbp]
+    \includegraphics[width=0.8\textwidth]{abbildungen/Drawio/SystemArchitektur}
+    \caption{Abbildung der Systemarchitektur}
+    \label{fig:sytem-architektur}
+    \raggedright Quelle: Eigene Darstellung
+\end{figure}
 
 \subsection{Antizipation der Kosten und des Nutzens}
 
@@ -271,7 +276,13 @@ Der Speicherbedarf für generierte Bilder steigt neben dem eintretendem Szenario
 Dabei ist zu beachten, dass die Kosten für den Speicherplatz im Google Cloud Storage mit der Zeit steigen.
 
 Auf die ersten drei Jahre sind dabei folgende Kosten zu erwarten:
-\includegraphics[width=0.8\textwidth]{abbildungen/KostenSpeicher}
+
+\begin{figure}[htbp]
+    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{abbildungen/KostenSpeicher}
+    \caption{Kostenentwicklung für die Speicherung von Bildern über 3 Jahre}
+    \label{fig:KostenentwicklungSpeicher}
+    \raggedright Quelle: Eigene Darstellung
+\end{figure}
 
 \textbf{Generierung und Speicherung von Texten}\newline
 Die Textgenerierung wird mit dem Text-to-Text-Modell Mistral-7B-Instruct durchgeführt, welches ebenfalls auf der Google Cloud Plattform als Endpunkt bereitgestellt wird.
@@ -287,8 +298,14 @@ Daraus ergeben sich folgende Kostenstrukturen:
 
 Zum Speichern der generierten Texte wird der Data Store verwendet.
 Dieser wird in der Region Belgien gehostet und wird nach Lese- und Schreibvorgängen, sowie den gespeicherten Daten berechnet.
-\includegraphics[width=0.8\textwidth]{abbildungen/kostendatastore}
-\footcite{GoogleDatastorePricing2025}
+
+\begin{figure}[htbp]
+    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{abbildungen/kostendatastore}
+    \caption{Kostenstruktur Data Store}
+    \label{fig:KostenDataStore}
+    \raggedright Quelle:\cite{GoogleDatastorePricing2025}
+\end{figure}
+
 
 Dabei wird nur die Nutzung abgerechnet, welche die Freikontingente überschreitet.
 Dies wird einzig im Best Case Szenario eintreten, da die Freikontingente für die anderen Szenarien ausreichen.
@@ -321,7 +338,12 @@ Für den Speicherbedarf ist zu beachten, dass der Text bei einem Social Media Po
 \end{itemize}
 
 Daraus ergeben sich folgende Kosten in den kommenden drei Jahren:
-\includegraphics[width=0.8\textwidth]{abbildungen/Kosten_Speicher_Text}
+\begin{figure}[htbp]
+    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{abbildungen/Kosten_Speicher_Text}
+    \caption{Entwicklung der Speicherkosten für Texte über 3 Jahre}
+    \label{fig:KostenentwicklungSpeicherText}
+    \raggedright Quelle: Eigene Darstellung
+\end{figure}
 
 Dabei ist über die Jahre bereits ein realisiertes Wachstum betrachtet, welches sich in den Kosten widerspiegelt.
 Dennoch sind selbst im Best Case Szenario die Kosten für den Speicherplatz im Data Store vernachlässigbar.
@@ -447,4 +469,9 @@ Die Betrachtung erfolgt auf monatlicher Basis.
 Das impliziert, dass sämtliche Kosten auf einen monatlichen Faktor runtergebrochen werden, ebenso, wie die Erträge.
 Daraus ergibt sich, dass die Anwendung ca. 3760 zahlende Nutzer benötigt, um den Break-Even-Point zu erreichen.
 
-\includegraphics[width=0.8\textwidth]{abbildungen/Break_Even}
+\begin{figure}[htbp]
+    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{abbildungen/Break_Even}
+    \caption{Break Even Analyse}
+    \label{fig:BreakEven}
+    \raggedright Quelle: Eigene Darstellung
+\end{figure}
