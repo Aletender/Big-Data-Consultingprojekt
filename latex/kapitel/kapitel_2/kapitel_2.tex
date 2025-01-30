@@ -22,7 +22,7 @@ Eine Strategie, die das „call to action“ Prinzip verstärkt ist die Verlusta
 Ein Beispiel für diese Eigenschaft wäre das Bewerben eines zeitlich begrenzten Angebotes von drei Pizzen im Preis von zwei Pizzen.
 
 Ansprechende Bildbeiträge spiegeln ein weiteres, wichtiges Kriterium wider, um die Aufmerksamkeit von Nutzern zu erlangen.\footcite{davidson_social_media}
-So geht aus einer Studie von Sabate et al. aus dem Jahr 2014 hervor, dass visuelle Inhalte weitaus mehr Engagement erzeugen, als nur rein textbasierte Beiträge.
+So geht aus einer Studie von Sabate et al. aus dem Jahr 2014 hervor, dass visuelle Inhalte weitaus mehr Engagement erzeugen, als rein auf Text basierte.
 Dabei sollten die Bilder auch aussagekräftig sein und mit der Eigenschaft der Kreativität und Einzigartigkeit synergieren.\footcite{sabate_factors}
 
 Die persönliche und emotionale Ansprache der Zielgruppe und das Erzählen einer Geschichte sind bei dem Social Media Marketing ebenfalls wichtige Eigenschaften, die in Beiträgen beachtet werden sollten.
@@ -53,7 +53,7 @@ Der Erstentwurf beschreibt sowohl die Frontend- als auch die Backend-Architektur
 Das Frontend stellt den Interaktionsbereich für den Benutzer dar.
 Entsprechend ist es wichtig, dass das Frontend übersichtlich und intuitiv gestaltet ist.
 Dabei ist es entscheidend, die komplexen Zusammenhänge der Applikation und abgebildeten Prozesse so zu visualisieren, dass der Benutzer nicht überfordert wird.
-Die gesamte User-Experience (UX) soll so gestaltet sein, dass der Benutzer durch die Applikation geführt und dadurch die Akzeptanz der Applikation erhöht wird.
+Die gesamte \ac{UX} User-Experience soll so gestaltet sein, dass der Benutzer durch die Applikation geführt und dadurch die Akzeptanz der Applikation erhöht wird.
 
 Zusätzlich soll sich die Applikation an die Corporate Identity des Unternehmens anpassen.
 Dies soll durch die Verwendung der Unternehmensfarben in der Applikation und des Logos erreicht werden.
@@ -76,7 +76,7 @@ Durch den Größenunterschied der Bubbles kann die Prominenz der Funktionen visu
 Als zentrales, wiederkehrendes Element über alle Seiten hinweg, wird eine Textausgabe zentral platziert, welche den Benutzer durch die Applikation führt.
 Diese Textausgabe fungiert dabei als interaktive Komponente, die dem Benutzer ein personalisiertes Erlebnis bietet.
 Der Navigationsbereich wird als Sidebar auf der linken Seite platziert, erreichbar über ein Burger-Icon.
-Wie im UX Design vorgesehen, wird das DISH POS Logo daneben platziert, wodurch es ein strategisch platziertes Element darstellt.
+Wie im \ac{UX} Design vorgesehen, wird das DISH POS Logo daneben platziert, wodurch es ein strategisch platziertes Element darstellt.
 Zuletzt findet sich ein Login Icon in der oberen rechten Ecke, welches den Benutzer zum Login-Bereich führt.
 Insgesamt ist die Darstellung minimalistisch gehalten, um den Benutzer auf die wichtigsten Elemente zu fokussieren.\footnote{Siehe Anhang, Abbildung \ref{fig:landing-page-concept}.}
 
@@ -139,10 +139,10 @@ Zusätzlich enthält das Deployment sowohl Konfigurations- als auch Secrets-Date
 
 \textbf{Backend}\newline
 Ziel der Backend-Architektur ist es, die Datenhaltung und -verarbeitung zu gewährleisten und die benötigten Aufrufe zu anderen Komponenten zu ermöglichen.
-Im Rahmen dieses Erstenwurfs wird zunächst ein einzelner Service konzipiert, der die Datenhaltung und -verarbeitung übernimmt, genannt Social Media Campaign Service (SMC Service)
+Im Rahmen dieses Erstenwurfs wird zunächst ein einzelner Service konzipiert, der die Datenhaltung und -verarbeitung übernimmt, genannt \ac{SMC} Service
 
-Der SMC Service stellt eine REST-API bereit, welche die Kommunikation mit dem Frontend ermöglicht.
-Die REST-API setzt sich aus verschiedenen Endpunkten zusammen, welche jeweils die verfügbaren Ressourcen und Aktionen beschreiben.
+Der \ac{SMC} Service stellt eine \ac{REST} \ac{API} bereit, welche die Kommunikation mit dem Frontend ermöglicht.
+Die \ac{REST} \ac{API} setzt sich aus verschiedenen Endpunkten zusammen, welche jeweils die verfügbaren Ressourcen und Aktionen beschreiben.
 
 Folgende Ressourcen stellt der Service bereit:
 \begin{itemize}
@@ -150,20 +150,20 @@ Folgende Ressourcen stellt der Service bereit:
     \item \textbf{/get-content} - GET: Dieser Endpunkt ermöglicht das Abrufen von generiertem Social Media Content.
 \end{itemize}
 
-Die implementierung des SMC Services erfolgt über das Python Framework Django\footcite{djangoproject}.
+Die implementierung des \ac{SMC} Services erfolgt über das Python Framework Django\footcite{djangoproject}.
 Zur Kommunikation mit den Google Cloud Services wird die Google Cloud Python SDK\footcite{googlecloudpython} verwendet.
 
-Mithilfe der Google Cloud Python SDK und entsprechender Konfiguration des API Clients wird die Kommunikation mit den als Cloud Service gehosteten Text-to-Text- und Text-to-Image-Modellen ermöglicht.
+Mithilfe der Google Cloud Python \ac{SDK} und entsprechender Konfiguration des API Clients wird die Kommunikation mit den als Cloud Service gehosteten Text-to-Text- und Text-to-Image-Modellen ermöglicht.
 Der POST Endpunkt wird vom Frontend aufgerufen, sobald der Benutzter seine Eingaben im Frontend abgeschlossen hat und den Social Media Content generieren möchte.
-Anschließend werden die Eingabeparameter über ein HTTP-Request-Body Objekt im JSON Format an den SMC Service gesendet.
+Anschließend werden die Eingabeparameter über ein \ac{HTTP} Request-Body Objekt im \ac{JSON} Format an den \ac{SMC} Service gesendet.
 Dieser verarbeitet den Request und routet diesen an den zuständigen POST Endpunkt.
-Über den POST Endpunkt wird anschließend durch Verwendung der Google Cloud Rest-API ein weiterer HTTP-Request and den Text-to-Text-Modell Cloud Service gesendet.
-Der Text-to-Text-Modell Cloud Service generiert anschließend aus den Eingaben einen finalen Eingabeprompt und sendet eine HTTP Antwort mit den Ergebnissen der Generierung als HTTP-Response-Body, welche vom SMC Service entgegengenommen und verarbeitet wird.
-Der SMC Service verwendet anschließend den finalen Eingabeprompt, und tätigt zwei weitere HTTP Aufrufe, parametrisiert mit dem generierten Eingabeprompt, an den Text-to-Image-Modell Cloud Service und den Text-to-Text-Modell Cloud Service über die Google Cloud Rest-API, um die vom User geforderten Inhalte final zu generieren.
-Die generierten Social Media Content Inhalte werden anschließend vom SMC Service verarbeitet, über einen HTTP Aufruf in der Datenbank gespeichert und an via HTTP Antwort auf die initiale Anfrage an das Frontend zur Visualisierung zurückgegeben.
+Über den POST Endpunkt wird anschließend durch Verwendung der Google Cloud \ac{REST} \ac{API} ein weiterer \ac{HTTP}-Request and den Text-to-Text-Modell Cloud Service gesendet.
+Der Text-to-Text-Modell Cloud Service generiert anschließend aus den Eingaben einen finalen Eingabeprompt und sendet eine \ac{HTTP}-Response mit den Ergebnissen der Generierung als HTTP-Response Body, welche vom \ac{SMC} Service entgegengenommen und verarbeitet wird.
+Der \ac{SMC} Service verwendet anschließend den finalen Eingabeprompt, und tätigt zwei weitere \ac{HTTP}-Requests, parametrisiert mit dem generierten Eingabeprompt, an den Text-to-Image-Modell Cloud Service und den Text-to-Text-Modell Cloud Service über die Google Cloud \ac{REST} \ac{API}, um die vom User geforderten Inhalte final zu generieren.
+Die generierten Social Media Content Inhalte werden anschließend vom \ac{SMC} Service verarbeitet, über einen \ac{HTTP}-Request in der Datenbank gespeichert und via \ac{HTTP}-Response auf die initiale Anfrage an das Frontend zur Visualisierung zurückgegeben.
 
 Der GET Endpunkt wird vom Frontend aufgerufen, sobald der Benutzer über die entsprechende Funktion im Frontend die Historie der generierten Inhalte einsehen möchte.
-Hierzu greift der GET- Endpunkt des SMC Services über die Google Cloud API an die konfigurierte Datenbank zu und gibt die gespeicherten Inhalte mithilfe einer Paginierungslogik an das Frontend per HTTP Antwort zurück.
+Hierzu greift der GET Endpunkt des \ac{SMC} Services über die Google Cloud \ac{API} an die konfigurierte Datenbank zu und gibt die gespeicherten Inhalte mithilfe einer Paginierungslogik an das Frontend per \ac{HTTP}-Response zurück.
 Durch Ergänzung des Resource parameters kann der Benutzer zudem zwischen den verschiedenen Ressourcen, wie z. B. generierte Texte oder Bilder, wechseln.
 
 Die Datenhaltung wird über eine Datenbank realisiert, welche innerhalb des Google Cloud Services betrieben wird.
@@ -199,29 +199,29 @@ Google Cloud Storage ist ein skalierbarer und kostengünstiger Speicher, der ein
 In diesem Service wird ein Bucket erstellt, in dem die Bilder gespeichert werden.\footcite{google_storage}
 
 Die Erzeugung der Bilder wird über den Social Media Campaign Service gestartet, indem das Text-to-Image-Modell aufgerufen wird.
-Das Modell generiert das Bild und schickt es an den SCM Service zurück.
+Das Modell generiert das Bild und schickt es an den \ac{SMC} Service zurück.
 Dieser speichert das Bild im Google Cloud Storage und persistiert den Pfad im Data Store.
-Bei Abfragen des Bildes wird der Pfad aus dem Data Store gelesen und über die REST-API an das Frontend zurückgegeben.
+Bei Abfragen des Bildes wird der Pfad aus dem Data Store gelesen und über die \ac{REST} \ac{API} an das Frontend zurückgegeben.
 
 Für den Prototypen wird ein einfacher Mechanismus implementiert, der die Bilder direkt im Google Cloud Storage speichert und den Pfad im Data Store persistiert.
 Dabei ist zu beachten, dass die Bilder in einem öffentlichen Bucket gespeichert werden, um den Zugriff für das Frontend zu ermöglichen.
 Zusätzlich ist die Auslastung des Services im produktiven Einsatz zu beachten, da die Speicherung von Bildern einen hohen Speicherbedarf verursachen kann.
 
-Als Lösung kann die Speicherung der Bilder durch eine Sidecar-Architektur ausgelagert werden, um die Last auf den SCM Service zu reduzieren.
+Als Lösung kann die Speicherung der Bilder durch eine Sidecar-Architektur ausgelagert werden, um die Last auf den \ac{SMC} Service zu reduzieren.
 Dabei wird ein weiterer Service implementiert, der die Bilder entgegennimmt und im Google Cloud Storage speichert.
-Dieser Service wird innerhalb des SCM Deployments gestartet und übernimmt die Speicherung der Bilder.\footcite{microsoft_sidecar_pattern}
+Dieser Service wird innerhalb des \ac{SMC} Deployments gestartet und übernimmt die Speicherung der Bilder.\footcite{microsoft_sidecar_pattern}
 
 Dadurch entsteht der Vorteil, dass eine unabhängige Auswahl der Speicherungstechnologie für die Bilder getroffen werden kann, wodurch die Performance verbessert werden kann.
 Darüber hinaus teilen sich alle Pods des Deployments den gleichen Lebenszyklus, was die Wartung und Skalierung vereinfacht.\footcite{kubernetes_sidecar_containers}
 
-Um die Bilder über einen Pfad für das Frontend verfügbar zu machen, wird ein weiterer Service, das Google Cloud Delivery Network (CDN), verwendet.
+Um die Bilder über einen Pfad für das Frontend verfügbar zu machen, wird ein weiterer Service, das Google \ac{CDN}, verwendet.
 Das CDN fungiert als Zwischenspeicher für statische Inhalte und stellt einen, gesondert skalierbaren, Zugriffspunkt für diese Daten bereit.\footcite{google_cloud_cdn_overview}
 Dadurch wird sowohl die benötigte Bandbreite bei der Kommunikation mit den Applikationsservices reduziert, als auch die Ladezeiten für den Benutzer verkürzt.
 Zudem reduzieren sich dadurch die Entwicklungs- und Wartungskosten, da besondere Encoding- und Skalierungsschritte entfallen.
 \newpage
 
-Das CDN wird so konfiguriert, dass es auf den angelegten Bucket im Google Cloud Storage zugreift und die Bilder an den Benutzer ausliefert.
-Dabei werden Synergieeffekte genutzt, da das CDN bereits in der Google Cloud integriert ist und somit eine einfache Konfiguration ermöglicht.
+Das \ac{CDN} wird so konfiguriert, dass es auf den angelegten Bucket im Google Cloud Storage zugreift und die Bilder an den Benutzer ausliefert.
+Dabei werden Synergieeffekte genutzt, da das \ac{CDN} bereits in der Google Cloud integriert ist und somit eine einfache Konfiguration ermöglicht.
 
 Die technische Architektur der Applikation kann wie folgt illustriert werden:
 
