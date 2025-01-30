@@ -119,7 +119,6 @@ Darüber werden dem Nutzer, in Anlehnung an die Landing Page, Bubbles mit den wi
 Abweichend zum Konzept wurde die Darstellung in der detaillierten Ansicht auf ein Icon für die Plattform reduziert.
 Zudem wurde die Navigation durch den Kalender visuell reduziert, da davon auszugehen ist, dass nutzer selten weitreichende Zeiträume im Kalender betrachten werden.
 Diese ist in der Standardansicht versteckt und wird über ein Hover-Element sichtbar.\footnote{Siehe Anhang, Abbildung \ref{fig:editor-page}.}
-\newpage
 
 Als technische Basis für das Frontend wird, als Ergebnis der vorangegangenen Recherche, Vue.js verwendet.
 Dieses wird zum Betrieb im Kubernetes Engine Cluster bereitgestellt.
@@ -218,7 +217,6 @@ Um die Bilder über einen Pfad für das Frontend verfügbar zu machen, wird ein 
 Das CDN fungiert als Zwischenspeicher für statische Inhalte und stellt einen, gesondert skalierbaren, Zugriffspunkt für diese Daten bereit.\footcite{google_cloud_cdn_overview}
 Dadurch wird sowohl die benötigte Bandbreite bei der Kommunikation mit den Applikationsservices reduziert, als auch die Ladezeiten für den Benutzer verkürzt.
 Zudem reduzieren sich dadurch die Entwicklungs- und Wartungskosten, da besondere Encoding- und Skalierungsschritte entfallen.
-\newpage
 
 Das \ac{CDN} wird so konfiguriert, dass es auf den angelegten Bucket im Google Cloud Storage zugreift und die Bilder an den Benutzer ausliefert.
 Dabei werden Synergieeffekte genutzt, da das \ac{CDN} bereits in der Google Cloud integriert ist und somit eine einfache Konfiguration ermöglicht.

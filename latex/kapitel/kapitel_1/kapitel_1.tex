@@ -231,7 +231,7 @@ Die Auswahl der im Rahmen dieser Projektarbeit eingesetzten generativen Machine 
 \end{itemize}
 
 Unter der Annahme, dass ein Engagement fördernder Social Media Post aus einer grafischen Komponente besteht, welche die Aufmerksamkeit des Nutzers initial erregt und einem beschreibenden Text, um den Nutzer mit zusätzlichen Informationen über die präsentierten Inhalte zu versorgen, lässt sich der in Abbildung \ref{fig:process_content_generation} beschriebene Prozess für die KI-basierte Generierung von Social Media Content definieren.
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{abbildungen/Process_image_generation}
     \caption{Prozess zur KI gestützten Social Media Content Generierung}
@@ -249,7 +249,7 @@ Die bewerteten Modelle basieren hierbei auf den populärsten Modellen der Machin
 Verglichen wurden unter anderem bekannte Modelle von etablierten Unternehmen, wie die Stable-Diffusion Modelle der Firma Stability-AI oder die FLUX Modelle der Firma Black Forest Labs.\footcite{stabilityai,blackforestlabs}
 Um die Leistungsfähigkeit der Modelle zu vergleichen und anschließend eine finale Auswahl je Modellziel treffen zu können, wurde ein identischer Prompt mit der Anweisung zur Generierung eines Döner Kebabs den verschiedenen Modellen übergeben.
 Anschließend wurde die benötigte Zeit zur Generierung des Outputs, sowie der Output selbst miteinander verglichen.
-\clearpage
+
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{abbildungen/Results_image_generation}
@@ -307,7 +307,6 @@ Aus Effizienzgründen ist das \textit{Mistral-7B-Instruct-v0.3} Modell für die 
 
 Die untersuchten Modelle in der Kategorie Text-to-Image hingegen, zeigen deutliche Unterschiede in der Qualität der generierten Inhalte, wobei die FLUX Modelle die qualitativ hochwertigsten Ergebnisse erzielen.
 Im direkten Vergleich erzielte hierbei das \textit{FLUX.1-schnell} Modell die besten Ergebnisse, da es die qualitativ hochwertigsten Bilder in kürzester Zeit generierte und somit zu bevorzugen ist.
-\clearpage
 
 \subsection{Auswahlprozess Web-Technologien}
 Um geeignete Technologien für die Entwicklung der Applikation zu finden, wird ein Auswahlprozess durchgeführt.
@@ -381,10 +380,9 @@ Daraus ergeben sich folgende Quellen:
     \item Mongodb - Offizieller MongoDB Artikel\footcite{mongodbMongoDBEvolved}
 \end{enumerate}
 
-\newpage
 Aus der vorangegangenen Analyse lassen sich folgende Daten ableiten:
 
-\begin{table}[h!]
+\begin{table}[H]
     \centering
     \begin{tabular}{|l|p{2cm}|p{3cm}|p{3cm}|p{3cm}|}
         \hline
@@ -417,7 +415,7 @@ Dadurch können gleiche Funktionen einfacher und schneller implementiert werden.
 
 Auf Basis der gesammelten Daten und geleisteten Recherchen lassen sich die Technologien wie folgt bewerten:
 
-\begin{table}[h!]
+\begin{table}[H]
     \centering
     \begin{tabular}{|l|l|c|c|c|c|}
         \hline
@@ -440,7 +438,7 @@ Auf Basis der gesammelten Daten und geleisteten Recherchen lassen sich die Techn
 Zuletzt werden die jeweiligen Technologien paarweise miteinander verglichen.
 Dabei wird die Bewertung der einzelnen Kriterien in Relation zueinander gesetzt, um die am besten geeignete Technologie zu identifizieren.
 Neben den erhobenen Daten fließen auch subjektive Einschätzungen in die Bewertung mit ein.
-\newpage
+
 \textbf{Frontend-Framework:}
 
 Angular und VueJS sind beide als Webtechnologie etabliert und weisen eine entsprechende Community auf.
@@ -461,10 +459,9 @@ Aus diesem Grund fiel die Wahl erneut auf VueJS.
 
 In der gesamten Betrachtung der Frontend-Frameworks ist VueJS die Technologie, die am besten zu den Anforderungen passt.
 
-\newpage
 \textbf{Backend-Framework:}
 Flask und Django stellen die beiden beliebtesten Python-Frameworks zur Entwicklung von Webapplikationen dar, wobei Django die größere Community aufweist.%Todo: Quelle
-Daraus resultiert ein größeres Angebot an Bibliotheken für Django im Vergleich zu Flask.%Todo: Quelle
+Daraus resultiert ein größeres Angebot an Bibliotheken für Django im Vergleich zu Flask. %Todo: Quelle
 Ebenso die Relevanz der Technologie ist für Django höher einzustufen.%Todo: Quelle
 Über die Lernkurve lässt sich sagen, dass Flask eine flachere Lernkurve aufweist als Django, welches eher als steil zu bewerten ist.%Todo: Quelle
 Im direkten Vergleich ist jedoch der Lernaufwand für Django gerechtfertigt, da die Technologie eine Vielzahl an Features bietet und durch die große Community und dem Angebot an Bibliotheken unterstützt wird.
@@ -492,6 +489,3 @@ Zentraler Unterschied zwischen beiden Technologien ist die Art der Datenbank, wo
 
 Für die Entscheidung über die Datenbanktechnologie wird PostgreSQL als SQL bzw. MongoDB als NoSQL Variante gewählt.
 Im Rahmen der Architekturkonzipierung können beide Technologien in Betracht gezogen werden, wobei die Entscheidung auf Basis der spezifischen Anforderungen der Applikation getroffen wird.
-
-
-
